@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cost of a Light Switch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #0a0a0b;
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .receipt-wrapper {
+    transform: rotate(0.5deg);
+    animation: fadeSlideIn 0.6s ease-out both;
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: rotate(0.5deg) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0.5deg) translateY(0);
+    }
+  }
+
+  .receipt {
+    background: #f5f0e8;
+    max-width: 420px;
+    width: 100%;
+    padding: 32px 24px 28px;
+    position: relative;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.5),
+      0 1px 4px rgba(0, 0, 0, 0.3),
+      /* subtle paper grain */
+      inset 0 0 80px rgba(0, 0, 0, 0.015);
+    /* torn top edge */
+    clip-path: polygon(
+      0% 8px, 3% 2px, 5% 7px, 8% 1px, 10% 6px, 13% 3px, 15% 8px, 18% 1px,
+      20% 5px, 23% 2px, 25% 7px, 28% 0px, 30% 6px, 33% 2px, 35% 8px, 38% 1px,
+      40% 5px, 43% 3px, 45% 7px, 48% 0px, 50% 6px, 53% 2px, 55% 8px, 58% 1px,
+      60% 5px, 63% 3px, 65% 7px, 68% 0px, 70% 6px, 73% 2px, 75% 8px, 78% 1px,
+      80% 5px, 83% 3px, 85% 7px, 88% 0px, 90% 5px, 93% 2px, 95% 7px, 98% 1px,
+      100% 6px,
+      /* right side straight down */
+      100% calc(100% - 8px),
+      /* torn bottom edge */
+      98% calc(100% - 2px), 95% calc(100% - 7px), 93% calc(100% - 1px),
+      90% calc(100% - 6px), 88% calc(100% - 3px), 85% calc(100% - 8px),
+      83% calc(100% - 1px), 80% calc(100% - 5px), 78% calc(100% - 2px),
+      75% calc(100% - 7px), 73% calc(100% - 0px), 70% calc(100% - 6px),
+      68% calc(100% - 2px), 65% calc(100% - 8px), 63% calc(100% - 1px),
+      60% calc(100% - 5px), 58% calc(100% - 3px), 55% calc(100% - 7px),
+      53% calc(100% - 0px), 50% calc(100% - 6px), 48% calc(100% - 2px),
+      45% calc(100% - 8px), 43% calc(100% - 1px), 40% calc(100% - 5px),
+      38% calc(100% - 3px), 35% calc(100% - 7px), 33% calc(100% - 0px),
+      30% calc(100% - 6px), 28% calc(100% - 2px), 25% calc(100% - 8px),
+      23% calc(100% - 1px), 20% calc(100% - 5px), 18% calc(100% - 2px),
+      15% calc(100% - 7px), 13% calc(100% - 0px), 10% calc(100% - 6px),
+      8% calc(100% - 3px), 5% calc(100% - 8px), 3% calc(100% - 1px),
+      0% calc(100% - 5px)
+    );
+  }
+
+  /* Paper texture overlay */
+  .receipt::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.008) 2px,
+        rgba(0, 0, 0, 0.008) 3px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 1px,
+        rgba(0, 0, 0, 0.005) 1px,
+        rgba(0, 0, 0, 0.005) 2px
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .receipt > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .divider-double {
+    font-size: 13px;
+    color: #3a3630;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .store-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1815;
+    margin: 8px 0 2px;
+    letter-spacing: 1px;
+  }
+
+  .store-location {
+    font-size: 12px;
+    color: #5a5550;
+    line-height: 1.6;
+  }
+
+  .receipt-number {
+    font-size: 12px;
+    color: #5a5550;
+    margin-top: 8px;
+  }
+
+  .divider {
+    font-size: 13px;
+    color: #a09888;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  /* Line items */
+  .items {
+    margin: 16px 0;
+  }
+
+  .line-item {
+    display: flex;
+    align-items: baseline;
+    font-size: 13px;
+    color: #2a2520;
+    line-height: 1.8;
+  }
+
+  .item-name {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .item-dots {
+    flex: 1;
+    overflow: hidden;
+    margin: 0 4px;
+    color: #b0a898;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .item-dots::before {
+    content: '......................................................................';
+    letter-spacing: 1px;
+  }
+
+  .item-price {
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .item-note {
+    font-size: 11px;
+    color: #7a7570;
+    padding-left: 16px;
+    line-height: 1.6;
+    margin-bottom: 2px;
+  }
+
+  /* Totals */
+  .totals {
+    margin: 16px 0;
+  }
+
+  .total-line {
+    display: flex;
+    align-items: baseline;
+    font-size: 13px;
+    color: #2a2520;
+    line-height: 2;
+  }
+
+  .total-line .item-name {
+    font-weight: 400;
+  }
+
+  .total-final {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1815;
+    line-height: 2.2;
+  }
+
+  .total-final .item-price {
+    font-weight: 700;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .footer-thanks {
+    font-size: 12px;
+    color: #4a4540;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .footer-notes {
+    font-size: 11px;
+    color: #8a8580;
+    text-align: left;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .footer-notes p {
+    margin-bottom: 4px;
+  }
+
+  /* Barcode */
+  .barcode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5px;
+    height: 36px;
+    margin-top: 16px;
+  }
+
+  .barcode .bar {
+    background: #2a2520;
+    height: 100%;
+    border-radius: 0.5px;
+  }
+
+  .bar-thin { width: 1.5px; }
+  .bar-med  { width: 2.5px; }
+  .bar-wide { width: 4px; }
+  .bar-gap  { width: 3px; background: transparent; }
+
+  /* Attribution below receipt */
+  .attribution {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 0.5px;
+    font-family: 'JetBrains Mono', monospace;
+    animation: fadeSlideIn 0.6s 0.3s ease-out both;
+  }
+
+  @media (max-width: 480px) {
+    .receipt {
+      padding: 24px 16px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="receipt-wrapper">
+  <div class="receipt">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="divider-double">================================</div>
+      <div class="store-name">THE SMART HOME GAZETTE</div>
+      <div class="store-location">
+        Munich, Germany<br>
+        April 2026
+      </div>
+      <div class="divider-double">================================</div>
+      <div class="receipt-number">OFFICIAL RECEIPT #0847</div>
+      <div class="divider">--------------------------------</div>
+    </div>
+
+    <!-- Line Items -->
+    <div class="items">
+      <div class="line-item">
+        <span class="item-name">Aqara FP2 Sensor &nbsp; x2</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&euro;180.00</span>
+      </div>
+      <div class="line-item">
+        <span class="item-name">Aqara Home Bridge &nbsp; x1</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&euro;120.00</span>
+      </div>
+      <div class="line-item">
+        <span class="item-name">Home Assistant Green &nbsp; x1</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&euro;99.00</span>
+      </div>
+      <div class="line-item">
+        <span class="item-name">Wi-Fi 7 Mesh Router &nbsp; x1</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&euro;180.00</span>
+      </div>
+      <div class="line-item">
+        <span class="item-name">Zigbee Coordinator &nbsp; x1</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&euro;65.00</span>
+      </div>
+      <div class="item-note">(alien mothership model)</div>
+      <div class="line-item">
+        <span class="item-name">BT Proxy ESP32 &nbsp; x10</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&euro;150.00</span>
+      </div>
+      <div class="line-item">
+        <span class="item-name">Golden Epoxy Hand &nbsp; x1</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&euro;35.00</span>
+      </div>
+      <div class="item-note">(antenna display unit)</div>
+      <div class="line-item">
+        <span class="item-name">Hours of YAML at 3AM</span>
+        <span class="item-dots"></span>
+        <span class="item-price">priceless</span>
+      </div>
+      <div class="divider" style="margin-top: 8px;">--------------------------------</div>
+    </div>
+
+    <!-- Totals -->
+    <div class="totals">
+      <div class="total-line">
+        <span class="item-name">SUBTOTAL</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&euro;829.00</span>
+      </div>
+      <div class="total-line">
+        <span class="item-name">TAX</span>
+        <span class="item-dots"></span>
+        <span class="item-price">YOUR SANITY</span>
+      </div>
+      <div class="divider">--------------------------------</div>
+      <div class="total-line total-final">
+        <span class="item-name">TOTAL</span>
+        <span class="item-dots"></span>
+        <span class="item-price">ONE WORKING LIGHT</span>
+      </div>
+      <div class="divider-double">================================</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-thanks">
+        Thank you for shopping at<br>
+        the rabbit hole.<br>
+        Please come again.
+      </div>
+      <div class="footer-notes">
+        <p>* No refunds on sanity.</p>
+        <p>* Zigbee coordinator appearance<br>&nbsp;&nbsp;not guaranteed.</p>
+        <p>* All sales are final once<br>&nbsp;&nbsp;you install Home Assistant.</p>
+      </div>
+      <div class="barcode">
+        <div class="bar bar-wide"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-med"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-gap"></div>
+        <div class="bar bar-wide"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-med"></div>
+        <div class="bar bar-med"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-gap"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-wide"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-med"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-gap"></div>
+        <div class="bar bar-med"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-wide"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-med"></div>
+        <div class="bar bar-gap"></div>
+        <div class="bar bar-wide"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-med"></div>
+        <div class="bar bar-wide"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-gap"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-med"></div>
+        <div class="bar bar-wide"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-thin"></div>
+        <div class="bar bar-med"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="attribution">florianhorner.github.io/smart-home-gazette</div>
+
+</body>
+</html>
