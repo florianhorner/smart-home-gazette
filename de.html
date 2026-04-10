@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Smart Home Gazette</title>
 <meta name="description" content="Wie ein Mann, der nur das Licht anmachen wollte, am Ende MQTT-Patches in Rust schrieb. Bd. VII.">
+<meta property="og:title" content="Er wollte nur das Licht anmachen.">
+<meta property="og:description" content="Wie IKEA-Birnen, Tado-Thermostate und ein einzelner Pr&auml;senzsensor eine Ereigniskette ausl&ouml;sten, an deren Ende gemergte Pull Requests in Rust, Bash und TypeScript standen. Eine Rekonstruktion.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://florianhorner.github.io/smart-home-gazette/de.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Er wollte nur das Licht anmachen.">
+<meta name="twitter:description" content="Wie IKEA-Birnen, Tado-Thermostate und ein einzelner Pr&auml;senzsensor zu gemergten Pull Requests in Rust, Bash und TypeScript f&uuml;hrten.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -324,7 +331,7 @@ body {
     <span class="highlight">Licht anmachen.</span>
   </h1>
   <p class="hero-deck">
-    Wie IKEA-Birnen, Tado-Thermostate, ein Saugroboter, Govee-Lampen und ein einzelner Pr&auml;senzsensor eine Ereigniskette ausl&ouml;sten, an deren Ende Pull Requests in drei Open-Source-Projekten standen&thinsp;&mdash;&thinsp;in Sprachen, die er nie geschrieben hatte. Eine Rekonstruktion.
+    Wie IKEA-Birnen, Tado-Thermostate, ein Saugroboter, Govee-Lampen und ein einzelner Pr&auml;senzsensor eine Ereigniskette ausl&ouml;sten, an deren Ende Pull Requests in drei Open-Source-Projekten standen&thinsp;&mdash;&thinsp;in Sprachen, die er nie geschrieben hatte. Auch: 10 Bluetooth-Proxys, 17 Matter-Ger&auml;te und ein Sensor, der durch W&auml;nde sieht. Eine Rekonstruktion.
   </p>
   <div class="hero-meta">
     <div class="stat-chip"><span class="val">5+</span><span>&Ouml;kosysteme</span></div>
@@ -336,6 +343,8 @@ body {
     <div class="stat-chip"><span class="val">3</span><span>Sprachen, die er nicht spricht</span></div>
     <span class="dot"></span>
     <div class="stat-chip"><span class="val">4</span><span>eingereichte PRs</span></div>
+    <span class="dot"></span>
+    <div class="stat-chip"><span class="val">54</span><span>Zigbee-Ger&auml;te</span></div>
   </div>
 </section>
 
@@ -463,7 +472,7 @@ body {
           </div>
           <div class="terminal-body">
             <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee devices --count</span></div>
-            <div><span class="t-warn">47</span> <span class="t-comment"># vor dem Umzug waren es 12</span></div>
+            <div><span class="t-warn">54</span> <span class="t-comment"># vor dem Umzug waren es 12</span></div>
             <div>&nbsp;</div>
             <div><span class="t-prompt">$ </span><span class="t-cmd">wifi band --congestion 2.4ghz</span></div>
             <div><span class="t-error">CRITICAL</span> <span class="t-comment"># zu viele Ger&auml;te, zu wenig Spektrum</span></div>
@@ -472,7 +481,7 @@ body {
             <div><span class="t-success">&#10003; mesh network deployed</span></div>
             <div>&nbsp;</div>
             <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee coordinator --status</span></div>
-            <div><span class="t-error">USB dongle: INSUFFICIENT</span> <span class="t-comment"># schafft keine 47 Ger&auml;te</span></div>
+            <div><span class="t-error">USB dongle: INSUFFICIENT</span> <span class="t-comment"># schafft keine 54 Ger&auml;te</span></div>
             <div>&nbsp;</div>
             <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee coordinator --upgrade</span></div>
             <div><span class="t-info">&rarr; dedizierter Zigbee-Router beschafft</span></div>
@@ -481,7 +490,7 @@ body {
           </div>
         </div>
 
-        <p>Der dedizierte Zigbee-Router&thinsp;&mdash;&thinsp;f&uuml;r den zuverl&auml;ssigen Betrieb von 47+ Ger&auml;ten unabdingbar&thinsp;&mdash;&thinsp;sieht aus wie ein Fundobjekt von einer au&szlig;erirdischen Absturzstelle. Er ist, objektiv betrachtet, das h&auml;sslichste Technologieprodukt in der Wohnung. Die meisten Menschen w&uuml;rden ihn hinter einem Vorhang verstecken.</p>
+        <p>Der dedizierte Zigbee-Router&thinsp;&mdash;&thinsp;f&uuml;r den zuverl&auml;ssigen Betrieb von 54+ Ger&auml;ten unabdingbar&thinsp;&mdash;&thinsp;sieht aus wie ein Fundobjekt von einer au&szlig;erirdischen Absturzstelle. Er ist, objektiv betrachtet, das h&auml;sslichste Technologieprodukt in der Wohnung. Die meisten Menschen w&uuml;rden ihn hinter einem Vorhang verstecken.</p>
         <p>Der Betroffene kaufte eine goldfarbene Epoxidharz-Handskulptur, positionierte sie neben der Kaffeemaschine und legte den Zigbee-Router in ihre Handfl&auml;che wie eine Opfergabe an die G&ouml;tter der Konnektivit&auml;t.</p>
 
         <div class="pullquote">
@@ -490,6 +499,38 @@ body {
         </div>
 
         <p>Nebeneffekt: G&auml;ste fragen jetzt nach der Kunstinstallation. Niemand fragt nach dem Zigbee-Mesh-Netzwerk. Das gilt als Erfolg.</p>
+
+<div class="callout info">
+<div class="callout-icon">&#128225;</div>
+<div class="callout-body"><strong>Aktuelle Ger&auml;teerhebung:</strong> 54 Zigbee-Ger&auml;te. 17 Matter-Ger&auml;te. 10 Bluetooth-Proxys. 1 Aqara Bridge, zweckentfremdet als Matter-Border-Router (urspr&uuml;nglicher Verwendungszweck: l&auml;ngst vergessen). Die Vorstellung, zehn Bluetooth-Proxys &uuml;ber eine Wohnung verteilt betreiben zu m&uuml;ssen, um die Mesh-Abdeckung aufrechtzuerhalten, ist nach jedem vern&uuml;nftigen Ma&szlig;stab irrsinnig. Man kann das niemandem erkl&auml;ren. Alle halten einen f&uuml;r komplett verr&uuml;ckt.</div>
+</div>
+
+<h2 class="story-h2" style="margin-top: 40px;">Vorfallbericht: Der K&uuml;chenventilator</h2>
+<div class="story-body">
+<p>Seine Freundin fragte: &bdquo;Warum geht der L&uuml;ftungsventilator in der K&uuml;che nicht aus?&ldquo;</p>
+<p>Er pr&uuml;fte die Logs. Kam zwanzig Minuten sp&auml;ter zur&uuml;ck.</p>
+<p>&bdquo;Der Ventilator in der K&uuml;che geht nicht aus, weil ich im B&uuml;ro &uuml;ber der K&uuml;che W&auml;sche zum Trocknen aufgeh&auml;ngt habe. Und es ist Tag.&ldquo;</p>
+<p>Die Erkl&auml;rung: Im B&uuml;ro &uuml;ber der K&uuml;che befindet sich ein Feuchtigkeitssensor. Er ist Teil der Ausl&ouml;sebedingungen f&uuml;r den K&uuml;chenventilator. Steigt die Luftfeuchtigkeit im B&uuml;ro, geht die Automation davon aus, dass unten gekocht wird&thinsp;&mdash;&thinsp;Dampf steigt durchs Geb&auml;ude. Die Automation l&auml;uft nur tags&uuml;ber, weil niemand um 3 Uhr nachts kocht.</p>
+<p>Nasse W&auml;sche im B&uuml;ro erh&ouml;hte die Luftfeuchtigkeit. Die Automation schloss: Es wird gekocht. Der Ventilator ging an. Und blieb an.</p>
+
+<div class="pullquote">
+<div class="pullquote-text">&bdquo;Es hat einen Moment gedauert, bis mir aufgefallen ist, wie bescheuert diese Erkl&auml;rung f&uuml;r jemanden klingt, der einfach nur wollte, dass der Ventilator aufh&ouml;rt.&ldquo;</div>
+<div class="pullquote-attr">&mdash; Betroffener, zu seiner Freundin, die Dinge &uuml;berdenkt</div>
+</div>
+</div>
+
+<h2 class="story-h2" style="margin-top: 40px;">Vorfallbericht: Der Sensor, der durch W&auml;nde sieht</h2>
+<div class="story-body">
+<p>Die Millimeterwellen-Pr&auml;senzsensoren&thinsp;&mdash;&thinsp;die Aqara FP2s, jene, mit denen diese gesamte Reise begann&thinsp;&mdash;&thinsp;k&ouml;nnen durch Trockenbauw&auml;nde sehen.</p>
+<p>Das erz&auml;hlt einem niemand. Das Datenblatt erw&auml;hnt es nicht. Man entdeckt es, wenn das Licht im B&uuml;ro in unregelm&auml;&szlig;igen Abst&auml;nden angeht, in etwa 30&thinsp;% der F&auml;lle, ohne erkennbaren Grund.</p>
+<p>Wochen des Debuggings. Automationen pr&uuml;fen. Logs durchgehen. Sensorzonen testen. Das Verhalten war ungleichm&auml;&szlig;ig genug, um sich einer Diagnose zu entziehen&thinsp;&mdash;&thinsp;nicht jedes Mal, nicht vorhersagbar, einfach&thinsp;&hellip;&thinsp;manchmal.</p>
+<p>Die Ursache: Das B&uuml;ro teilt sich eine Trockenbauwand mit dem Badezimmer. Der FP2-Sensor im B&uuml;ro erkannte eine menschliche Pr&auml;senz <em>durch die Wand hindurch</em>. Er beobachtete, klinisch formuliert, den Betroffenen bei der Nutzung des Badezimmers.</p>
+
+<div class="callout danger">
+<div class="callout-icon">&#128308;</div>
+<div class="callout-body"><strong>Technischer Befund:</strong> Millimeterwellen-Radar durchdringt handels&uuml;blichen Trockenbau (12,5&thinsp;mm Gipskartonplatte). Erkennungsreichweite durch eine einzelne Trennwand: circa 1,5&ndash;2&thinsp;Meter. Symptome: intermittierende Falschpr&auml;senz in angrenzenden R&auml;umen. L&ouml;sung: Erkennungszonen anpassen, wandnahe Bereiche ausschlie&szlig;en. Emotionaler Schaden: erheblich.</div>
+</div>
+</div>
       </div>
     </section>
 
@@ -515,7 +556,7 @@ body {
 
         <div class="callout success">
           <div class="callout-icon">&#10004;&#65039;</div>
-          <div class="callout-body"><strong>Aktueller Status:</strong> Die Lichter funktionieren. Multizonale Pr&auml;senzerkennung l&auml;uft. Tado integriert. Alle Steckdosen aktiv. 47 Zigbee-Ger&auml;te im Mesh-Netzwerk. Der FP2 wei&szlig;, wo im Raum sich jemand befindet. Der Zigbee-Router liegt in einer goldenen Hand neben der Kaffeemaschine. <em>Das war immer das Ziel. Der Weg dorthin war optional.</em></div>
+          <div class="callout-body"><strong>Aktueller Status:</strong> Die Lichter funktionieren. Multizonale Pr&auml;senzerkennung l&auml;uft. Tado integriert. Alle Steckdosen aktiv. 54 Zigbee-Ger&auml;te im Mesh-Netzwerk. 10 Bluetooth-Proxys. 17 Matter-Ger&auml;te. Der FP2 wei&szlig;, wo im Raum sich jemand befindet. Der Zigbee-Router liegt in einer goldenen Hand neben der Kaffeemaschine. <em>Das war immer das Ziel. Der Weg dorthin war optional.</em></div>
         </div>
 
         <p>Seine Eltern verstehen es immer noch nicht. Die Maintainer schon.</p>
@@ -565,7 +606,7 @@ body {
           <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:22%; width:22%"></div></div>
         </div>
         <div class="sanity-row">
-          <div class="sanity-label-row"><span class="sanity-label-text">47 Zigbee-Ger&auml;te auf 2,4&thinsp;GHz</span><span class="sanity-val">14%</span></div>
+          <div class="sanity-label-row"><span class="sanity-label-text">54 Zigbee-Ger&auml;te auf 2,4&thinsp;GHz</span><span class="sanity-val">14%</span></div>
           <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:14%; width:14%"></div></div>
         </div>
         <div class="sanity-row">
@@ -597,6 +638,31 @@ body {
         </div>
       </div>
     </div>
+
+<div class="widget">
+<div class="widget-header">
+<span class="widget-title">Beitr&auml;ge</span>
+<span class="widget-badge">Belege</span>
+</div>
+<div class="widget-body" style="display:flex;flex-direction:column;gap:10px">
+<div style="padding:8px 12px; background:var(--surface-2); border-radius:8px;">
+<div style="font-size:12px; color:var(--text); font-weight:600; margin-bottom:3px">govee2mqtt <span style="font-size:10px; font-weight:400; color:var(--text-muted)">&middot; Rust</span></div>
+<div style="font-size:11px; color:var(--text-muted); line-height:1.4">Unicode-Crash-Fix f&uuml;r chinesische Preset-Namen. <a href="https://github.com/wez/govee2mqtt" style="color:var(--accent-2); text-decoration:none">Gemergt</a></div>
+</div>
+<div style="padding:8px 12px; background:var(--surface-2); border-radius:8px;">
+<div style="font-size:12px; color:var(--text); font-weight:600; margin-bottom:3px">addon-glances <span style="font-size:10px; font-weight:400; color:var(--text-muted)">&middot; Bash/Docker</span></div>
+<div style="font-size:11px; color:var(--text-muted); line-height:1.4">Deprecation-Fixes + 502-Bug-Fix. <a href="https://github.com/hassio-addons/addon-glances/pull/603" style="color:var(--accent-2); text-decoration:none">PR #603</a>, <a href="https://github.com/hassio-addons/addon-glances/pull/604" style="color:var(--accent-2); text-decoration:none">#604</a></div>
+</div>
+<div style="padding:8px 12px; background:var(--surface-2); border-radius:8px;">
+<div style="font-size:12px; color:var(--text); font-weight:600; margin-bottom:3px">addon-glances Fork <span style="font-size:10px; font-weight:400; color:var(--text-muted)">&middot; Bash/Docker</span></div>
+<div style="font-size:11px; color:var(--text-muted); line-height:1.4">MQTT-Export, Sicherheitsh&auml;rtung. <a href="https://github.com/florianhorner/addon-glances" style="color:var(--accent-2); text-decoration:none">Ver&ouml;ffentlicht</a></div>
+</div>
+<div style="padding:8px 12px; background:var(--surface-2); border-radius:8px;">
+<div style="font-size:12px; color:var(--text); font-weight:600; margin-bottom:3px">Lightener <span style="font-size:10px; font-weight:400; color:var(--text-muted)">&middot; TypeScript</span></div>
+<div style="font-size:11px; color:var(--text-muted); line-height:1.4">Visueller Helligkeitskurven-Editor. <a href="https://github.com/fredck/lightener" style="color:var(--accent-2); text-decoration:none">In Arbeit</a></div>
+</div>
+</div>
+</div>
 
     <div class="widget">
       <div class="widget-header">
@@ -632,7 +698,9 @@ body {
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">GOVEE</span><span class="glossar-val">RGB-Lampen-&Ouml;kosystem. Sch&ouml;ne Farben. Spricht mit niemandem. App 3 von 8.</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">TADO</span><span class="glossar-val">Thermostat-&Ouml;kosystem. Hervorragend zum Heizen. Vier Integrationspfade. Alle verschieden.</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">FP2</span><span class="glossar-val">Aqara-Sensor. Multizonale Pr&auml;senz bei 10&thinsp;cm Aufl&ouml;sung. Erkennt wie viele und wo. Der Ausl&ouml;ser.</span></div>
-        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">ZIGBEE</span><span class="glossar-val">Mesh-Protokoll. &bdquo;Flash es einfach um.&ldquo; Einstieg zu 47 Ger&auml;ten und einer goldenen Handskulptur.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">ZIGBEE</span><span class="glossar-val">Mesh-Protokoll. &bdquo;Flash es einfach um.&ldquo; Einstieg zu 54 Ger&auml;ten und einer goldenen Handskulptur.</span></div>
+<div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">MATTER</span><span class="glossar-val">Universelles Smart-Home-Protokoll. 17 Ger&auml;te und steigend. Die Aqara Bridge ist jetzt ein Matter-Border-Router. Der Kreis schlie&szlig;t sich.</span></div>
+<div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">BT PROXY</span><span class="glossar-val">Bluetooth-Proxy. Man braucht zehn davon. Verteilt &uuml;ber die Wohnung. F&uuml;r Mesh-Abdeckung. Das ist normal.</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">HA GREEN</span><span class="glossar-val">Home Assistant Green. Schl&uuml;sselfertiger Server. &bdquo;Kein Basteln n&ouml;tig.&ldquo; (Siehe: Akt III.)</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">MQTT</span><span class="glossar-val">Messaging-Protokoll. Zun&auml;chst als &bdquo;einfaches Tool&ldquo; beschrieben. F&uuml;hrt zu Rust.</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">RUST</span><span class="glossar-val">Programmiersprache. Memory-safe. Ben&ouml;tigt, um einen Lichtschalter zu verbessern.</span></div>
@@ -660,15 +728,22 @@ body {
     </div>
     <div class="classified-card">
       <div class="classified-cat warning">Warnung</div>
-      <p class="classified-text"><strong>Aqara FP2</strong> zum Verkauf angeboten. F&uuml;hrt statistisch in 73&thinsp;% der F&auml;lle zu Home Assistant. In 23&thinsp;% zu einem Zigbee-Router in einer goldenen Hand. In 12&thinsp;% zu Rust. K&auml;ufer &uuml;bernimmt jede Verantwortung.</p>
+      <p class="classified-text"><strong>Aqara FP2</strong> zum Verkauf angeboten. F&uuml;hrt statistisch in 73&thinsp;% der F&auml;lle zu Home Assistant. In 31&thinsp;% zu 54 Zigbee-Ger&auml;ten. In 12&thinsp;% zu einem Sensor, der einen durch die Badezimmerwand beobachtet. K&auml;ufer tr&auml;gt Eigenverantwortung.</p>
     </div>
   </div>
+</div>
+
+<div style="max-width:1100px; margin:0 auto; padding:0 clamp(16px, 4vw, 48px) clamp(32px, 4vw, 48px);">
+<div style="display:flex; gap:16px; flex-wrap:wrap;">
+<a href="https://github.com/florianhorner" style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:8px; border:1px solid var(--border-strong); color:var(--text); text-decoration:none; font-size:13px; font-weight:500; transition: border-color 200ms ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-strong)'">Die vollst&auml;ndigen Configs, Patches und Forks &rarr;</a>
+<a href="https://github.com/florianhorner/addon-glances/issues" style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:8px; border:1px solid var(--border-strong); color:var(--text-muted); text-decoration:none; font-size:13px; font-weight:500; transition: border-color 200ms ease;" onmouseover="this.style.borderColor='var(--accent-2)'" onmouseout="this.style.borderColor='var(--border-strong)'">Sie pflegen eines dieser Projekte? Lassen Sie uns reden &rarr;</a>
+</div>
 </div>
 
 <hr class="divider">
 <footer class="site-footer">
   <div class="footer-left"><strong>The Smart Home Gazette</strong> &middot; M&uuml;nchen, 2026 &middot; Alle Lichter brennen.</div>
-  <div class="footer-right">uptime: 847d &middot; zigbee_geraete: 47 &middot; goldene_haende: 1 &middot; status: fine</div>
+  <div class="footer-right">uptime: 847d &middot; zigbee_geraete: 54 &middot; bt_proxys: 10 &middot; goldene_haende: 1 &middot; status: fine</div>
 </footer>
 
 <script>

@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Smart Home Gazette</title>
 <meta name="description" content="How a man who just wanted to turn on a light ended up writing MQTT patches in Rust. Vol. VII.">
+<meta property="og:title" content="He just wanted to turn on a light.">
+<meta property="og:description" content="How IKEA bulbs, Tado thermostats, and a single presence sensor triggered a chain of events that ended with merged pull requests in Rust, Bash, and TypeScript. A reconstruction.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://florianhorner.github.io/smart-home-gazette/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="He just wanted to turn on a light.">
+<meta name="twitter:description" content="How IKEA bulbs, Tado thermostats, and a single presence sensor ended with merged pull requests in Rust, Bash, and TypeScript.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -324,7 +331,7 @@ body {
     <span class="highlight">turn on a light.</span>
   </h1>
   <p class="hero-deck">
-    How IKEA bulbs, Tado thermostats, a robot vacuum, Govee lamps, and a single presence sensor triggered a chain of events that ended with merged pull requests across three open-source projects in languages he'd never written. A reconstruction.
+    How IKEA bulbs, Tado thermostats, a robot vacuum, Govee lamps, and a single presence sensor triggered a chain of events that ended with merged pull requests across three open-source projects in languages he'd never written. Also: 10 Bluetooth proxies, 17 Matter devices, and a sensor that sees through walls. A reconstruction.
   </p>
   <div class="hero-meta">
     <div class="stat-chip"><span class="val">5+</span><span>ecosystems</span></div>
@@ -336,6 +343,8 @@ body {
     <div class="stat-chip"><span class="val">3</span><span>languages he doesn't speak</span></div>
     <span class="dot"></span>
     <div class="stat-chip"><span class="val">4</span><span>PRs submitted</span></div>
+    <span class="dot"></span>
+    <div class="stat-chip"><span class="val">54</span><span>Zigbee devices</span></div>
   </div>
 </section>
 
@@ -463,7 +472,7 @@ body {
           </div>
           <div class="terminal-body">
             <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee devices --count</span></div>
-            <div><span class="t-warn">47</span> <span class="t-comment"># it was 12 before the move</span></div>
+            <div><span class="t-warn">54</span> <span class="t-comment"># it was 12 before the move</span></div>
             <div>&nbsp;</div>
             <div><span class="t-prompt">$ </span><span class="t-cmd">wifi band --congestion 2.4ghz</span></div>
             <div><span class="t-error">CRITICAL</span> <span class="t-comment"># too many devices, not enough spectrum</span></div>
@@ -472,7 +481,7 @@ body {
             <div><span class="t-success">&#10003; mesh network deployed</span></div>
             <div>&nbsp;</div>
             <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee coordinator --status</span></div>
-            <div><span class="t-error">USB dongle: INSUFFICIENT</span> <span class="t-comment"># can't handle 47 devices</span></div>
+            <div><span class="t-error">USB dongle: INSUFFICIENT</span> <span class="t-comment"># can't handle 54 devices</span></div>
             <div>&nbsp;</div>
             <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee coordinator --upgrade</span></div>
             <div><span class="t-info">&rarr; dedicated Zigbee router purchased</span></div>
@@ -481,7 +490,7 @@ body {
           </div>
         </div>
 
-        <p>The dedicated Zigbee router&mdash;required for reliable operation of 47+ devices&mdash;looks like something recovered from an extraterrestrial crash site. It is, objectively, the ugliest piece of technology in the apartment. Most people would hide it behind a curtain.</p>
+        <p>The dedicated Zigbee router&mdash;required for reliable operation of 54+ devices&mdash;looks like something recovered from an extraterrestrial crash site. It is, objectively, the ugliest piece of technology in the apartment. Most people would hide it behind a curtain.</p>
         <p>The subject bought a golden-coloured epoxy resin hand sculpture, positioned it next to the coffee machine, and placed the Zigbee router in its palm like an offering to the connectivity gods.</p>
 
         <div class="pullquote">
@@ -490,6 +499,38 @@ body {
         </div>
 
         <p>Side effects: guests now ask about the art installation. Nobody asks about the Zigbee mesh network. This is considered a success.</p>
+
+<div class="callout info">
+<div class="callout-icon">&#128225;</div>
+<div class="callout-body"><strong>Current device census:</strong> 54 Zigbee devices. 17 Matter devices. 10 Bluetooth proxies. 1 Aqara Bridge repurposed as a Matter border router (its original purpose abandoned long ago). The concept of needing ten Bluetooth proxies distributed across an apartment to maintain mesh coverage is, by any reasonable standard, bonkers. You cannot explain this to anyone. Everyone thinks you are batshit crazy.</div>
+</div>
+
+<h2 class="story-h2" style="margin-top: 40px;">Incident Report: The Kitchen Fan</h2>
+<div class="story-body">
+<p>His girlfriend asked: &ldquo;Why does the ventilation fan in the kitchen not turn off?&rdquo;</p>
+<p>He checked the logs. Came back twenty minutes later.</p>
+<p>&ldquo;The fan in the kitchen won't turn off because I hung up laundry to dry in the office above the kitchen. And it's daytime.&rdquo;</p>
+<p>The explanation: there is a humidity sensor in the office above the kitchen. It is part of the trigger conditions for the kitchen fan. If humidity in the office rises, the automation assumes someone is cooking downstairs &mdash; steam rises through the building. The automation only runs during daytime hours, because nobody cooks at 3 AM.</p>
+<p>Wet laundry in the office raised the humidity. The automation concluded: cooking. The fan turned on. And stayed on.</p>
+
+<div class="pullquote">
+<div class="pullquote-text">&ldquo;It took me a moment to realise how stupid this explanation sounds to someone who just wanted the fan to stop.&rdquo;</div>
+<div class="pullquote-attr">&mdash; Subject, to his girlfriend, who is reconsidering things</div>
+</div>
+</div>
+
+<h2 class="story-h2" style="margin-top: 40px;">Incident Report: The Sensor That Sees Through Walls</h2>
+<div class="story-body">
+<p>The millimetre-wave presence sensors &mdash; the Aqara FP2s, the ones that started this entire journey &mdash; can see through drywall.</p>
+<p>Nobody tells you this. The spec sheet does not mention it. You discover it when the light in your office turns on at random intervals, roughly 30% of the time, for no apparent reason.</p>
+<p>Weeks of debugging. Checking automations. Reviewing logs. Testing sensor zones. The behaviour was inconsistent enough to resist diagnosis &mdash; not every time, not predictable, just &hellip; sometimes.</p>
+<p>The root cause: the office shares a drywall partition with the bathroom. The FP2 sensor in the office was detecting a human presence <em>through the wall</em>. It was, in clinical terms, watching him use the bathroom.</p>
+
+<div class="callout danger">
+<div class="callout-icon">&#128308;</div>
+<div class="callout-body"><strong>Technical finding:</strong> Millimetre-wave radar penetrates standard interior drywall (12.5 mm gypsum board). Detection range through a single partition: approximately 1.5&ndash;2 metres. Symptoms: intermittent false presence in adjacent rooms. Resolution: adjust detection zones to exclude wall-adjacent areas. Emotional damage: considerable.</div>
+</div>
+</div>
       </div>
     </section>
 
@@ -515,7 +556,7 @@ body {
 
         <div class="callout success">
           <div class="callout-icon">&#10004;&#65039;</div>
-          <div class="callout-body"><strong>Current status:</strong> The lights work. Multi-zone presence detection runs. Tado integrated. All plugs active. 47 Zigbee devices on a mesh network. The FP2 knows where in the room someone is. The Zigbee router sits in a golden hand next to the coffee machine. <em>This was always the goal. The path there was optional.</em></div>
+          <div class="callout-body"><strong>Current status:</strong> The lights work. Multi-zone presence detection runs. Tado integrated. All plugs active. 54 Zigbee devices on a mesh network. 10 Bluetooth proxies. 17 Matter devices. The FP2 knows where in the room someone is. The Zigbee router sits in a golden hand next to the coffee machine. <em>This was always the goal. The path there was optional.</em></div>
         </div>
 
         <p>His parents still don't understand. The maintainers do.</p>
@@ -565,7 +606,7 @@ body {
           <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:22%; width:22%"></div></div>
         </div>
         <div class="sanity-row">
-          <div class="sanity-label-row"><span class="sanity-label-text">47 Zigbee devices on 2.4 GHz</span><span class="sanity-val">14%</span></div>
+          <div class="sanity-label-row"><span class="sanity-label-text">54 Zigbee devices on 2.4 GHz</span><span class="sanity-val">14%</span></div>
           <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:14%; width:14%"></div></div>
         </div>
         <div class="sanity-row">
@@ -597,6 +638,31 @@ body {
         </div>
       </div>
     </div>
+
+<div class="widget">
+<div class="widget-header">
+<span class="widget-title">Contributions</span>
+<span class="widget-badge">evidence</span>
+</div>
+<div class="widget-body" style="display:flex;flex-direction:column;gap:10px">
+<div style="padding:8px 12px; background:var(--surface-2); border-radius:8px;">
+<div style="font-size:12px; color:var(--text); font-weight:600; margin-bottom:3px">govee2mqtt <span style="font-size:10px; font-weight:400; color:var(--text-muted)">&middot; Rust</span></div>
+<div style="font-size:11px; color:var(--text-muted); line-height:1.4">Unicode crash fix for Chinese preset names. <a href="https://github.com/wez/govee2mqtt" style="color:var(--accent-2); text-decoration:none">Merged</a></div>
+</div>
+<div style="padding:8px 12px; background:var(--surface-2); border-radius:8px;">
+<div style="font-size:12px; color:var(--text); font-weight:600; margin-bottom:3px">addon-glances <span style="font-size:10px; font-weight:400; color:var(--text-muted)">&middot; Bash/Docker</span></div>
+<div style="font-size:11px; color:var(--text-muted); line-height:1.4">Deprecation fixes + 502 bug fix. <a href="https://github.com/hassio-addons/addon-glances/pull/603" style="color:var(--accent-2); text-decoration:none">PR #603</a>, <a href="https://github.com/hassio-addons/addon-glances/pull/604" style="color:var(--accent-2); text-decoration:none">#604</a></div>
+</div>
+<div style="padding:8px 12px; background:var(--surface-2); border-radius:8px;">
+<div style="font-size:12px; color:var(--text); font-weight:600; margin-bottom:3px">addon-glances fork <span style="font-size:10px; font-weight:400; color:var(--text-muted)">&middot; Bash/Docker</span></div>
+<div style="font-size:11px; color:var(--text-muted); line-height:1.4">MQTT export, security hardening. <a href="https://github.com/florianhorner/addon-glances" style="color:var(--accent-2); text-decoration:none">Published</a></div>
+</div>
+<div style="padding:8px 12px; background:var(--surface-2); border-radius:8px;">
+<div style="font-size:12px; color:var(--text); font-weight:600; margin-bottom:3px">Lightener <span style="font-size:10px; font-weight:400; color:var(--text-muted)">&middot; TypeScript</span></div>
+<div style="font-size:11px; color:var(--text-muted); line-height:1.4">Visual brightness curve editor card. <a href="https://github.com/fredck/lightener" style="color:var(--accent-2); text-decoration:none">In progress</a></div>
+</div>
+</div>
+</div>
 
     <div class="widget">
       <div class="widget-header">
@@ -632,7 +698,9 @@ body {
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">GOVEE</span><span class="glossar-val">RGB lamp ecosystem. Beautiful colours. Speaks to nobody. App 3 of 8.</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">TADO</span><span class="glossar-val">Thermostat ecosystem. Excellent for heating. Four integration paths. All different.</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">FP2</span><span class="glossar-val">Aqara sensor. Multi-zone presence at 10 cm resolution. Detects how many and where. The catalyst.</span></div>
-        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">ZIGBEE</span><span class="glossar-val">Mesh protocol. &ldquo;Just reflash it.&rdquo; Gateway to 47 devices and a golden hand sculpture.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">ZIGBEE</span><span class="glossar-val">Mesh protocol. &ldquo;Just reflash it.&rdquo; Gateway to 54 devices and a golden hand sculpture.</span></div>
+<div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">MATTER</span><span class="glossar-val">Universal smart home protocol. 17 devices and counting. The Aqara Bridge is now a Matter border router. Full circle.</span></div>
+<div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">BT PROXY</span><span class="glossar-val">Bluetooth proxy. You need ten of them. Distributed across the apartment. For mesh coverage. This is normal.</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">HA GREEN</span><span class="glossar-val">Home Assistant Green. Turnkey server. &ldquo;No tinkering required.&rdquo; (See: Act III.)</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">MQTT</span><span class="glossar-val">Messaging protocol. Initially described as &ldquo;a simple tool.&rdquo; Leads to Rust.</span></div>
         <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">RUST</span><span class="glossar-val">Programming language. Memory-safe. Required to improve a light switch.</span></div>
@@ -660,15 +728,22 @@ body {
     </div>
     <div class="classified-card">
       <div class="classified-cat warning">Warning</div>
-      <p class="classified-text"><strong>Aqara FP2</strong> listed for sale. Statistically leads to Home Assistant in 73% of cases. To a Zigbee router in a golden hand in 23%. To Rust in 12%. Buyer assumes all responsibility.</p>
+      <p class="classified-text">Aqara FP2 listed for sale. Statistically leads to Home Assistant in 73% of cases. To 54 Zigbee devices in 31%. To a sensor watching you through the bathroom wall in 12%. Buyer assumes all responsibility.</p>
     </div>
   </div>
+</div>
+
+<div style="max-width:1100px; margin:0 auto; padding:0 clamp(16px, 4vw, 48px) clamp(32px, 4vw, 48px);">
+<div style="display:flex; gap:16px; flex-wrap:wrap;">
+<a href="https://github.com/florianhorner" style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:8px; border:1px solid var(--border-strong); color:var(--text); text-decoration:none; font-size:13px; font-weight:500; transition: border-color 200ms ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-strong)'">The full configs, patches, and forks &rarr;</a>
+<a href="https://github.com/florianhorner/addon-glances/issues" style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:8px; border:1px solid var(--border-strong); color:var(--text-muted); text-decoration:none; font-size:13px; font-weight:500; transition: border-color 200ms ease;" onmouseover="this.style.borderColor='var(--accent-2)'" onmouseout="this.style.borderColor='var(--border-strong)'">Maintain one of these projects? Let's talk &rarr;</a>
+</div>
 </div>
 
 <hr class="divider">
 <footer class="site-footer">
   <div class="footer-left"><strong>The Smart Home Gazette</strong> &middot; Munich, 2026 &middot; All lights are on.</div>
-  <div class="footer-right">uptime: 847d &middot; zigbee_devices: 47 &middot; golden_hands: 1 &middot; status: fine</div>
+  <div class="footer-right">uptime: 847d &middot; zigbee_devices: 54 &middot; bt_proxies: 10 &middot; golden_hands: 1 &middot; status: fine</div>
 </footer>
 
 <script>
