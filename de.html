@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Smart Home Gazette</title>
-<meta name="description" content="Wie ein Mann, der nur das Licht anmachen wollte, MQTT-Patches in Rust schreibt. Vol. VII.">
+<meta name="description" content="Wie ein Mann, der nur das Licht anmachen wollte, am Ende MQTT-Patches in Rust schrieb. Bd. VII.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -58,7 +58,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── HEADER ── */
 .site-header {
   border-bottom: 1px solid var(--border);
   padding: 0 clamp(16px, 4vw, 48px);
@@ -73,287 +72,118 @@ body {
   backdrop-filter: blur(12px);
 }
 
-.site-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.site-logo { display: flex; align-items: center; gap: 10px; }
 
 .logo-mark {
-  width: 28px;
-  height: 28px;
-  background: var(--accent);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 800;
-  color: white;
-  letter-spacing: -0.5px;
-  flex-shrink: 0;
+  width: 28px; height: 28px; background: var(--accent); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: white; letter-spacing: -0.5px; flex-shrink: 0;
 }
 
-.logo-text {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -0.3px;
-  color: var(--text);
-}
-
-.logo-edition {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+.logo-text { font-size: 13px; font-weight: 600; letter-spacing: -0.3px; color: var(--text); }
+.logo-edition { font-size: 11px; color: var(--text-muted); font-weight: 400; letter-spacing: 0.02em; }
+.header-right { display: flex; align-items: center; gap: 12px; }
 
 .pill {
-  font-size: 11px;
-  font-weight: 500;
-  padding: 3px 9px;
-  border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
+  font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--border-strong); color: var(--text-muted); letter-spacing: 0.02em;
 }
-
 .pill.red { border-color: rgba(248,113,113,0.3); color: var(--accent-red); background: rgba(248,113,113,0.06); }
 .pill.green { border-color: rgba(74,222,128,0.3); color: var(--accent-green); background: rgba(74,222,128,0.06); }
 
 .theme-toggle {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--border-strong);
-  background: transparent;
-  color: var(--text-muted);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 150ms ease;
+  width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border-strong);
+  background: transparent; color: var(--text-muted); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: all 150ms ease;
 }
 .theme-toggle:hover { background: var(--surface-2); color: var(--text); }
 
-/* ── HERO ── */
 .hero {
   padding: clamp(48px, 8vw, 96px) clamp(16px, 4vw, 48px) clamp(40px, 6vw, 72px);
-  max-width: 1100px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--border);
+  max-width: 1100px; margin: 0 auto; border-bottom: 1px solid var(--border);
 }
 
-.hero-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.hero-eyebrow-text {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
+.hero-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.hero-eyebrow-text { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
 .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border-strong); }
-
-.hero-eyebrow-date {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-}
+.hero-eyebrow-date { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
 
 .hero-headline {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.04em;
-  color: var(--text);
-  margin-bottom: 16px;
-  max-width: 800px;
+  font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.08;
+  letter-spacing: -0.04em; color: var(--text); margin-bottom: 16px; max-width: 800px;
 }
-
-.hero-headline .highlight {
-  color: var(--accent);
-}
+.hero-headline .highlight { color: var(--accent); }
 
 .hero-deck {
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-  line-height: 1.6;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin-bottom: 28px;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem); line-height: 1.6;
+  color: var(--text-muted); max-width: 600px; margin-bottom: 28px;
 }
 
-.hero-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
+.hero-meta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.stat-chip { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
+.stat-chip .val { font-family: var(--font-mono); font-weight: 600; color: var(--text); font-size: 13px; }
 
-.stat-chip {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.stat-chip .val {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  color: var(--text);
-  font-size: 13px;
-}
-
-/* ── MAIN LAYOUT ── */
 .main-grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 48px);
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 48px;
-  align-items: start;
+  max-width: 1100px; margin: 0 auto; padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 48px);
+  display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start;
 }
-
-/* ── STORY ── */
-.story {}
 
 .act-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 10px;
+  display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
 }
 
 .act-number {
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  background: var(--surface-3);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: var(--font-mono);
+  width: 18px; height: 18px; border-radius: 4px; background: var(--surface-3);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; font-family: var(--font-mono);
 }
-
 .act-number.i { background: rgba(99,102,241,0.15); color: var(--accent); }
 .act-number.ii { background: rgba(251,191,36,0.12); color: var(--accent-amber); }
 .act-number.iii { background: rgba(248,113,113,0.12); color: var(--accent-red); }
+.act-number.iv { background: rgba(74,222,128,0.12); color: var(--accent-green); }
 
 .story-section {
-  margin-bottom: 52px;
-  padding-bottom: 52px;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 52px; padding-bottom: 52px; border-bottom: 1px solid var(--border);
 }
 .story-section:last-child { border-bottom: none; }
 
 .story-h2 {
-  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 12px;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem); font-weight: 700;
+  letter-spacing: -0.025em; line-height: 1.2; color: var(--text); margin-bottom: 12px;
 }
 
 .story-body p {
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: 15px; line-height: 1.75;
   color: color-mix(in oklch, var(--text) 80%, var(--text-muted));
-  margin-bottom: 16px;
-  max-width: 65ch;
+  margin-bottom: 16px; max-width: 65ch;
 }
+.story-body p strong { color: var(--text); font-weight: 600; }
 
-.story-body p strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-/* Blockquote / Pullquote */
 .pullquote {
-  border-left: 3px solid var(--accent);
-  padding: 12px 20px;
-  margin: 24px 0;
-  background: rgba(99,102,241,0.05);
-  border-radius: 0 8px 8px 0;
+  border-left: 3px solid var(--accent); padding: 12px 20px; margin: 24px 0;
+  background: rgba(99,102,241,0.05); border-radius: 0 8px 8px 0;
 }
-
 .pullquote-text {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
-  color: var(--text);
-  letter-spacing: -0.01em;
-  font-style: italic;
-  margin-bottom: 6px;
+  font-size: 16px; font-weight: 500; line-height: 1.5; color: var(--text);
+  letter-spacing: -0.01em; font-style: italic; margin-bottom: 6px;
 }
+.pullquote-attr { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.02em; }
 
-.pullquote-attr {
-  font-size: 11px;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
-}
-
-/* Terminal block */
 .terminal {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 20px 0;
-  font-family: var(--font-mono);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; margin: 20px 0; font-family: var(--font-mono);
 }
-
 .terminal-bar {
-  background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  background: var(--surface-2); border-bottom: 1px solid var(--border);
+  padding: 8px 14px; display: flex; align-items: center; gap: 6px;
 }
-
-.tb-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-}
+.tb-dot { width: 10px; height: 10px; border-radius: 50%; }
 .tb-dot.r { background: #ff5f57; }
 .tb-dot.y { background: #febc2e; }
 .tb-dot.g { background: #28c840; }
-
-.terminal-label {
-  margin-left: 6px;
-  font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-}
-
-.terminal-body {
-  padding: 14px 16px;
-  font-size: 12.5px;
-  line-height: 1.8;
-}
-
+.terminal-label { margin-left: 6px; font-size: 11px; color: var(--text-muted); letter-spacing: 0.04em; }
+.terminal-body { padding: 14px 16px; font-size: 12.5px; line-height: 1.8; }
 .t-prompt { color: var(--accent-green); }
 .t-cmd { color: var(--text); }
 .t-comment { color: var(--text-faint); }
@@ -363,232 +193,91 @@ body {
 .t-info { color: var(--accent-2); }
 .t-dim { color: var(--text-muted); }
 
-/* Callout */
 .callout {
-  display: flex;
-  gap: 12px;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin: 20px 0;
+  display: flex; gap: 12px; background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px; margin: 20px 0;
 }
-
 .callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-
 .callout-body { font-size: 13px; line-height: 1.6; color: var(--text-muted); }
-
 .callout-body strong { color: var(--text); font-weight: 600; }
-
 .callout.warn { border-color: rgba(251,191,36,0.2); background: rgba(251,191,36,0.05); }
 .callout.danger { border-color: rgba(248,113,113,0.2); background: rgba(248,113,113,0.05); }
 .callout.info { border-color: rgba(34,211,238,0.2); background: rgba(34,211,238,0.05); }
 .callout.success { border-color: rgba(74,222,128,0.2); background: rgba(74,222,128,0.05); }
 
-/* ── SIDEBAR ── */
 .sidebar { display: flex; flex-direction: column; gap: 20px; }
 
-.widget {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
+.widget { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
 .widget-header {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
 }
-
-.widget-title {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.widget-badge {
-  font-size: 10px;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-}
-
+.widget-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.widget-badge { font-size: 10px; font-family: var(--font-mono); color: var(--text-muted); }
 .widget-body { padding: 14px 16px; }
 
-/* Sanity meter */
-.sanity-row {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  margin-bottom: 14px;
-}
+.sanity-row { display: flex; flex-direction: column; gap: 3px; margin-bottom: 14px; }
 .sanity-row:last-child { margin-bottom: 0; }
-
-.sanity-label-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11.5px;
-}
-
+.sanity-label-row { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; }
 .sanity-label-text { color: var(--text-muted); }
 .sanity-val { font-family: var(--font-mono); font-size: 11px; color: var(--text); font-weight: 600; }
-
-.sanity-track {
-  height: 4px;
-  background: var(--surface-3);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.sanity-fill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
+.sanity-track { height: 4px; background: var(--surface-3); border-radius: 2px; overflow: hidden; }
+.sanity-fill { height: 100%; border-radius: 2px; transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
 .fill-ok { background: var(--accent); }
 .fill-warn { background: var(--accent-amber); }
-.fill-crit {
-  background: repeating-linear-gradient(90deg, var(--accent-red) 0, var(--accent-red) 6px, transparent 6px, transparent 10px);
-}
+.fill-crit { background: repeating-linear-gradient(90deg, var(--accent-red) 0, var(--accent-red) 6px, transparent 6px, transparent 10px); }
 
-/* Stats widget */
-.stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.stat-block {
-  background: var(--surface-2);
-  border-radius: 8px;
-  padding: 10px 12px;
-}
-
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat-block { background: var(--surface-2); border-radius: 8px; padding: 10px 12px; }
 .stat-val {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  font-family: var(--font-mono);
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 3px;
+  font-size: 20px; font-weight: 800; letter-spacing: -0.03em;
+  font-family: var(--font-mono); color: var(--text); line-height: 1; margin-bottom: 3px;
 }
-
 .stat-val.red { color: var(--accent-red); }
 .stat-val.green { color: var(--accent-green); }
 .stat-val.indigo { color: var(--accent); }
 .stat-val.amber { color: var(--accent-amber); }
-
 .stat-desc { font-size: 11px; color: var(--text-muted); line-height: 1.3; }
 
-/* Glossar */
 .glossar-item {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 10px;
-  align-items: start;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 60px 1fr; gap: 10px; align-items: start;
 }
 .glossar-item:last-child { border-bottom: none; }
-
-.glossar-key {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--accent-2);
-  letter-spacing: 0.04em;
-  padding-top: 2px;
-}
-
+.glossar-key { font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--accent-2); letter-spacing: 0.04em; padding-top: 2px; }
 .glossar-val { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
 
-/* Classifieds */
-.classifieds {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 48px) clamp(40px, 6vw, 72px);
-}
-
+.classifieds { max-width: 1100px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) clamp(40px, 6vw, 72px); }
 .classifieds-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  padding-bottom: 16px; border-bottom: 1px solid var(--border);
 }
-
-.classifieds-title {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-
+.classifieds-title { font-size: 13px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
 .classifieds-sub { font-size: 12px; color: var(--text-muted); }
-
-.classifieds-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
+.classifieds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .classified-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  transition: border-color 200ms ease;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; transition: border-color 200ms ease;
 }
 .classified-card:hover { border-color: var(--border-strong); }
-
-.classified-cat {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
+.classified-cat { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
 .classified-cat.sell { color: var(--accent-amber); }
 .classified-cat.wanted { color: var(--accent-2); }
 .classified-cat.warning { color: var(--accent-red); }
-
 .classified-text { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
 .classified-text strong { color: var(--text); font-weight: 500; }
 
-/* Footer */
 .site-footer {
-  border-top: 1px solid var(--border);
-  padding: 20px clamp(16px, 4vw, 48px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  max-width: 1100px;
-  margin: 0 auto;
+  border-top: 1px solid var(--border); padding: 20px clamp(16px, 4vw, 48px);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px; max-width: 1100px; margin: 0 auto;
 }
-
 .footer-left { font-size: 12px; color: var(--text-muted); }
 .footer-left strong { color: var(--text); font-weight: 600; }
 .footer-right { font-size: 11px; font-family: var(--font-mono); color: var(--text-faint); }
 
-/* ── Divider ── */
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  max-width: 1100px;
-  margin: 0 auto;
-}
+.divider { border: none; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
 
-/* ── MOBILE ── */
 @media (max-width: 768px) {
   .main-grid { grid-template-columns: 1fr; gap: 32px; }
   .sidebar { order: -1; }
@@ -598,11 +287,6 @@ body {
   .site-footer { flex-direction: column; text-align: center; }
 }
 
-@media (max-width: 480px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* ── Animations ── */
 @media (prefers-reduced-motion: no-preference) {
   .sanity-fill { width: 0 !important; }
   .sanity-fill.loaded { width: var(--w) !important; }
@@ -611,238 +295,294 @@ body {
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="site-logo">
     <div class="logo-mark">SH</div>
     <div>
-      <div class="logo-text">Smart Home Gazette</div>
-      <div class="logo-edition">Vol. VII · Sonderausgabe</div>
+      <div class="logo-text">The Smart Home Gazette</div>
+      <div class="logo-edition">Bd. VII &middot; Sonderausgabe</div>
     </div>
   </div>
   <div class="header-right">
-    <span class="pill">München, April 2026</span>
+    <span class="pill">M&uuml;nchen, April 2026</span>
     <span class="pill green">Lichter: AN</span>
     <span class="pill red">Entwickler: KEIN SLEEP</span>
-    <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+    <button class="theme-toggle" data-theme-toggle aria-label="Farbschema wechseln">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">
-    <span class="hero-eyebrow-text">Investigativ · Smart Home</span>
+    <span class="hero-eyebrow-text">Investigativ &middot; Smart Home</span>
     <span class="dot"></span>
-    <span class="hero-eyebrow-date">2026-04-10T14:19:00+02:00</span>
+    <span class="hero-eyebrow-date">2026-04-10T03:47:00+02:00</span>
   </div>
-
   <h1 class="hero-headline">
     Er wollte nur das<br>
     <span class="highlight">Licht anmachen.</span>
   </h1>
-
   <p class="hero-deck">
-    Wie Ikea-Lampen, Tado-Thermostate und ein einzelner Präsenzsensor eine Kette von Ereignissen auslösten, die mit einem gemergten Pull Request in einem Open-Source-MQTT-Projekt endeten. Eine Rekonstruktion.
+    Wie IKEA-Birnen, Tado-Thermostate, ein Saugroboter, Govee-Lampen und ein einzelner Pr&auml;senzsensor eine Ereigniskette ausl&ouml;sten, an deren Ende Pull Requests in drei Open-Source-Projekten standen&thinsp;&mdash;&thinsp;in Sprachen, die er nie geschrieben hatte. Eine Rekonstruktion.
   </p>
-
   <div class="hero-meta">
-    <div class="stat-chip"><span class="val">4</span><span>Ökosysteme</span></div>
+    <div class="stat-chip"><span class="val">5+</span><span>&Ouml;kosysteme</span></div>
     <span class="dot"></span>
     <div class="stat-chip"><span class="val">1</span><span>Aqara FP2</span></div>
     <span class="dot"></span>
     <div class="stat-chip"><span class="val">847</span><span>Zeilen YAML</span></div>
     <span class="dot"></span>
-    <div class="stat-chip"><span class="val">∞</span><span>GitHub Issues</span></div>
+    <div class="stat-chip"><span class="val">3</span><span>Sprachen, die er nicht spricht</span></div>
     <span class="dot"></span>
-    <div class="stat-chip"><span class="val">1</span><span>merged PR</span></div>
+    <div class="stat-chip"><span class="val">4</span><span>eingereichte PRs</span></div>
   </div>
 </section>
 
-<!-- MAIN CONTENT + SIDEBAR -->
 <div class="main-grid">
-
-  <!-- STORY -->
   <main class="story">
 
-    <!-- ACT I -->
     <section class="story-section">
-      <div class="act-tag">
-        <span class="act-number i">I</span>
-        Der Status Quo
-      </div>
-      <h2 class="story-h2">Das Ökosystem, das eigentlich kein Problem war</h2>
+      <div class="act-tag"><span class="act-number i">I</span> Der Status Quo</div>
+      <h2 class="story-h2">Das &Ouml;kosystem, das eigentlich f&uuml;nfzehn &Ouml;kosysteme war</h2>
       <div class="story-body">
-        <p>Es lief. Wirklich. <strong>Ikea Trådfri</strong> für Lampen und smarte Steckdosen. <strong>Tado</strong> für Thermostate — eigenes Ökosystem, eigene App, funktioniert. Diverse Steckdosen weiterer Hersteller. Alexa als gemeinsames Dach über allem, unvollständig aber vorhanden.</p>
-        <p>»Ich hatte vier Apps. Aber jede tat, was sie sollte«, erklärt der Betroffene rückblickend. »Ich war nicht unglücklich.« Das ist wichtig zu verstehen: Die Ausgangslage war stabil. Kein Notstand, keine Krise. Nur ein fragmentiertes Setup, das die meisten Menschen als Normalzustand akzeptiert hätten.</p>
+        <p>Die Ausgangslage war oberfl&auml;chlich betrachtet &uuml;berschaubar: ein paar Lampen, ein paar Thermostate. Darunter jedoch: ein Zoo. Rund zehn diverse <strong>Govee-Lampen</strong>&thinsp;&mdash;&thinsp;sch&ouml;nes RGB-Ambiente, vollst&auml;ndig isoliertes &Ouml;kosystem. Vier oder f&uuml;nf strategisch wichtige <strong>IKEA-Tradfri</strong>-Leuchten, die eine eigene Bridge ben&ouml;tigten und keinen sauberen Weg ins Amazon-&Ouml;kosystem fanden. <strong>Tado-Thermostate</strong>&thinsp;&mdash;&thinsp;hervorragend zum Heizen, eigene App, eigene Cloud, spricht weder mit IKEA noch mit Govee. Ein Saugroboter, der in keiner vorstellbaren Zukunft mit Apple Home gesprochen h&auml;tte. Diverse smarte Steckdosen von drei verschiedenen Herstellern.</p>
+        <p>&bdquo;Ich hatte sechs Apps. Aber jede einzelne tat, was sie sollte&ldquo;, erkl&auml;rt der Betroffene. &bdquo;Ich war nicht unzufrieden.&ldquo; Die Ausgangslage war stabil. Kein Notfall. Nur ein fragmentiertes Setup, das die meisten Menschen als normal akzeptieren w&uuml;rden.</p>
 
         <div class="terminal">
           <div class="terminal-bar">
             <div class="tb-dot r"></div><div class="tb-dot y"></div><div class="tb-dot g"></div>
-            <span class="terminal-label">ecosystem_audit.sh — Era I</span>
+            <span class="terminal-label">ecosystem_audit.sh &mdash; &Auml;ra I</span>
           </div>
           <div class="terminal-body">
             <div><span class="t-prompt">$ </span><span class="t-cmd">ls ~/smart-home/</span></div>
-            <div><span class="t-success">ikea-tradfri/</span><span class="t-dim">   # Lampen + Steckdosen — App ①</span></div>
-            <div><span class="t-info">tado/</span><span class="t-dim">           # Thermostate — App ②</span></div>
-            <div><span class="t-warn">misc-plugs/</span><span class="t-dim">     # Diverse Steckdosen — App ③</span></div>
-            <div><span class="t-dim">alexa/</span><span class="t-dim">          # Dach über allem, halbwegs — App ④</span></div>
+            <div><span class="t-success">ikea-tradfri/</span><span class="t-dim">    # 5 Lampen, eigene Bridge &mdash; App 1</span></div>
+            <div><span class="t-info">tado/</span><span class="t-dim">            # Thermostate, eigene Cloud &mdash; App 2</span></div>
+            <div><span class="t-warn">govee/</span><span class="t-dim">           # 10 RGB-Lampen, eigene App &mdash; App 3</span></div>
+            <div><span class="t-dim">misc-plugs/</span><span class="t-dim">      # 3 Hersteller &mdash; Apps 4, 5, 6</span></div>
+            <div><span class="t-dim">robo-vacuum/</span><span class="t-dim">     # eigenes Universum &mdash; App 7</span></div>
+            <div><span class="t-dim">alexa/</span><span class="t-dim">           # Klebeschicht, irgendwie &mdash; App 8</span></div>
             <div>&nbsp;</div>
             <div><span class="t-prompt">$ </span><span class="t-cmd">echo $STATUS</span></div>
-            <div><span class="t-success">works. not great. not terrible.</span></div>
+            <div><span class="t-success">funktioniert. nicht gro&szlig;artig. nicht schlimm.</span></div>
           </div>
         </div>
 
-        <p>Das Entscheidende: Jeder dieser Schritte war für sich vernünftig. Ikea-Lampen sind gut. Tado ist hervorragend für Heizungssteuerung. Die Steckdosen funktionieren. Niemand kauft Produkte in Erwartung zukünftiger Ökosystemkonflikte.</p>
+        <p>Das entscheidende Detail: Jede einzelne dieser Kaufentscheidungen war f&uuml;r sich genommen vern&uuml;nftig. IKEA-Lampen sind gut. Tado ist exzellent. Govee macht sch&ouml;ne Lampen. Der Saugroboter saugt. Niemand kauft Produkte in Erwartung zuk&uuml;nftiger &Ouml;kosystem-Konflikte. Und Alexa hielt das Ganze zusammen&thinsp;&mdash;&thinsp;unvollkommen, mit Optimierungsmacken, die bis heute bestehen&thinsp;&mdash;&thinsp;aber es hielt.</p>
       </div>
     </section>
 
-    <!-- ACT II -->
     <section class="story-section">
-      <div class="act-tag">
-        <span class="act-number ii">II</span>
-        Der Auslöser
-      </div>
-      <h2 class="story-h2">Ein Sensor. Ein Gedanke. Ein Suchbegriff.</h2>
+      <div class="act-tag"><span class="act-number ii">II</span> Der Ausl&ouml;ser</div>
+      <h2 class="story-h2">Ein Sensor. Ein Gedanke. Ein sehr teures Downgrade.</h2>
       <div class="story-body">
-        <p>Der <strong>Aqara FP2</strong> — Millimeterwellen-Präsenzdetektor, HomeKit-kompatibel, verspricht Multizone-Erkennung. Das Versprechen: das Licht weiß nicht nur, ob jemand im Zimmer ist, sondern wo. »Nicht ob. Wo.«</p>
-        <p>Apple Home erschien als logische Plattform. Der FP2 ist native HomeKit. Sauber. Eine App. Ende der Geschichte — in der Theorie.</p>
+        <p>Der <strong>Aqara FP2</strong>&thinsp;&mdash;&thinsp;Millimeterwellen-Pr&auml;senzsensor. HomeKit-nativ. Aber ihn als &bdquo;Pr&auml;senzsensor&ldquo; zu bezeichnen, untertreibt drastisch.</p>
+
+        <div class="callout info">
+          <div class="callout-icon">&#128161;</div>
+          <div class="callout-body"><strong>Was der FP2 tats&auml;chlich kann:</strong> Er erkennt nicht nur, ob jemand im Raum ist. Er erkennt, wie viele Personen und wo&thinsp;&mdash;&thinsp;mit einer Aufl&ouml;sung von etwa 10&thinsp;&times;&thinsp;10&thinsp;cm pro Zone. Man kann beliebige Erkennungszonen auf einem Grundriss einzeichnen. Er verfolgt Personen in Echtzeit zwischen den Zonen. Das ist eine grundlegend andere F&auml;higkeit als die Infrarot-Bewegungsmelder der Vorg&auml;ngergeneration.</div>
+        </div>
+
+        <p>Apple Home schien die logische Plattform. Der FP2 ist nativer HomeKit-Sensor. Zonenbasierte Automationen, individuelle Lichtszenen je nach Aufenthaltsort im Raum. Sauber. Elegant. In der Theorie.</p>
 
         <div class="callout warn">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body"><strong>Das Problem:</strong> Ikea Trådfri, Tado und die diversen Steckdosen verhielten sich gegenüber Apple Home mit der Begeisterung einer Katze gegenüber Wasser. Nicht alle Geräte unterstützt. Nicht vollständig. Nicht ohne alles neu zu kaufen.</div>
+          <div class="callout-icon">&#9888;&#65039;</div>
+          <div class="callout-body"><strong>Das Problem:</strong> Die Integration des FP2 in das Alexa-&Ouml;kosystem bedeutete, die gesamte Zonengranularit&auml;t auf ein einziges bin&auml;res Signal zu reduzieren: belegt oder nicht belegt. Ein 90-Euro-Millimeterwellensensor degradiert zu dem, was ein 5-Euro-Infrarot-PIR-Sensor leistet. Kein anderes Ger&auml;t&thinsp;&mdash;&thinsp;IKEA, Govee, Saugroboter&thinsp;&mdash;&thinsp;konnte mit Apple Home sprechen.</div>
         </div>
 
-        <p>»Entweder ich kaufe alles neu und migriere das komplett — oder nicht«, sagt er. Er entschied sich für »nicht«. Die Rückkehr zu Alexa war keine Niederlage, sondern eine bewusste, pragmatische Entscheidung: die funktionierende Infrastruktur behalten.</p>
+        <p>Der Betroffene kaufte eine Aqara Home Bridge, um die FP2-Sensoren zu seinen anderen Hausautomationssystemen durchzureichen. Das sollte alles l&ouml;sen.</p>
+        <p>Tat es nicht. Govee-Lampen kommunizierten weiterhin mit niemandem. Und der n&auml;chste Vorschlag aus dem Internet lautete: &bdquo;Flash deine Ger&auml;te auf Zigbee um&ldquo;&thinsp;&mdash;&thinsp;ein Protokoll, von dem er noch nie geh&ouml;rt hatte.</p>
 
         <div class="pullquote">
-          <div class="pullquote-text">»Alexa war nicht das Problem. Alexa war die vernünftige Antwort. Das Problem war, dass der FP2 auf dem Tisch lag und ich wusste, dass es besser geht.«</div>
-          <div class="pullquote-attr">— Betroffener, nachts um 03:47</div>
+          <div class="pullquote-text">&bdquo;Ich habe eine 40-Euro-Bridge gekauft, damit ein 90-Euro-Sensor wie ein 5-Euro-Sensor funktioniert, und das Internet hat mir geraten, meine Gl&uuml;hbirnen umzuflashen. Da wusste ich, dass etwas grundlegend schiefgelaufen war.&ldquo;</div>
+          <div class="pullquote-attr">&mdash; Betroffener, nachts um 02:14</div>
         </div>
 
-        <p>Dann: eine Google-Suche. »Home Assistant Ikea Tado integration«. Siebenundzwanzig Tabs. Ein Reddit-Thread. Eine YouTube-Playlist. Ein Discord-Server mit 40.000 Mitgliedern.</p>
-
         <div class="callout danger">
-          <div class="callout-icon">🔴</div>
-          <div class="callout-body"><strong>Redaktionswarnung:</strong> Diese Suche führt statistisch zu Home Assistant. Wir empfehlen, sie nur in Begleitung von ausreichend Freizeit durchzuführen. Gesamtdauer bis zum ersten <code style="font-family:var(--font-mono);font-size:11px">configuration.yaml</code>: 72 Stunden.</div>
+          <div class="callout-icon">&#128308;</div>
+          <div class="callout-body"><strong>Redaktionswarnung:</strong> Der Satz &bdquo;Flash es einfach auf Zigbee um&ldquo; wurde in 73&thinsp;% der dokumentierten F&auml;lle als Einstiegsdroge zu Home Assistant identifiziert. Vorsicht geboten.</div>
         </div>
       </div>
     </section>
 
-    <!-- ACT III -->
     <section class="story-section">
-      <div class="act-tag">
-        <span class="act-number iii">III</span>
-        Der Absturz
-      </div>
-      <h2 class="story-h2">Home Assistant: Die Plattform, die alles kann — und das beweist</h2>
+      <div class="act-tag"><span class="act-number iii">III</span> Die Konsolidierung</div>
+      <h2 class="story-h2">Home Assistant: kein Basteln n&ouml;tig (Erz&auml;hler: es wurde gebastelt)</h2>
       <div class="story-body">
-        <p>Home Assistant hält sein Versprechen. Ikea Trådfri: integriert. Tado: integriert. Steckdosen: integriert. Aqara FP2: integriert. Alles in einer Oberfläche, eine App, ein Dashboard. Das ursprüngliche Ziel: erreicht.</p>
-
-        <p>Was niemand im Vorfeld kommuniziert: »alles integriert« bedeutet »man versteht jetzt, wie alles funktioniert«. Das ist nicht dasselbe.</p>
+        <p>Nachdem er an jeder Wand angerannt war, fiel die Entscheidung: zur&uuml;ck zu Amazon. Pragmatisch. Vern&uuml;nftig. Erledigt.</p>
+        <p>Bis auf die FP2-Sensoren. Die funktionierten in Apple Home wunderbar. Zonenbasierte Beleuchtung war tats&auml;chlich transformativ. Einen Raum betreten und nur den relevanten Bereich beleuchtet sehen&thinsp;&mdash;&thinsp;das ist kein Gimmick. So sollte Licht funktionieren.</p>
+        <p>Dann: eine Suche. &bdquo;Home Assistant IKEA Tado Govee Integration.&ldquo; Siebenundzwanzig Tabs. Ein Reddit-Thread. Eine YouTube-Playlist. Ein Discord-Server mit 40.000 Mitgliedern.</p>
+        <p>Die wichtige Nuance: Das Ziel war nie, zu basteln. Er wollte ausdr&uuml;cklich kein DIY-Projekt. Also kaufte er, statt etwas von Grund auf zu bauen, einen <strong>Home Assistant Green</strong>&thinsp;&mdash;&thinsp;einen zweckgebauten, schl&uuml;sselfertigen Mini-Server.</p>
 
         <div class="terminal">
           <div class="terminal-bar">
             <div class="tb-dot r"></div><div class="tb-dot y"></div><div class="tb-dot g"></div>
-            <span class="terminal-label">home-assistant — descent log</span>
+            <span class="terminal-label">home-assistant &mdash; migration.log</span>
           </div>
           <div class="terminal-body">
-            <div><span class="t-prompt">$ </span><span class="t-cmd">ha core install</span> <span class="t-comment"># ok, one afternoon</span></div>
-            <div><span class="t-success">✓ installed</span></div>
+            <div><span class="t-prompt">$ </span><span class="t-cmd">ha core install</span> <span class="t-comment"># ein Nachmittag</span></div>
+            <div><span class="t-success">&#10003; installed</span></div>
             <div>&nbsp;</div>
-            <div><span class="t-prompt">$ </span><span class="t-cmd">ha integrations add ikea zigbee2mqtt</span></div>
-            <div><span class="t-warn">→ requires Zigbee coordinator</span></div>
+            <div><span class="t-prompt">$ </span><span class="t-cmd">ha integrations list tado</span> <span class="t-comment"># wie schwer kann das sein?</span></div>
+            <div><span class="t-info">&rarr; Option A: Native Tado-Integration</span></div>
+            <div><span class="t-info">&rarr; Option B: Emulierte Apple-Home-Bridge</span></div>
+            <div><span class="t-info">&rarr; Option C: Matter-Bridge</span></div>
+            <div><span class="t-info">&rarr; Option D: Manuelles API-Polling</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-prompt">$ </span><span class="t-cmd">echo "which one?"</span></div>
+            <div><span class="t-warn">yes.</span> <span class="t-comment"># alle. jede mit Trade-offs.</span></div>
             <div>&nbsp;</div>
             <div><span class="t-prompt">$ </span><span class="t-cmd">cat automation.yaml | wc -l</span></div>
-            <div><span class="t-error">847</span> <span class="t-comment"># it started at 12</span></div>
-            <div>&nbsp;</div>
-            <div><span class="t-prompt">$ </span><span class="t-cmd">git log --oneline upstream/main | head -1</span></div>
-            <div><span class="t-success">a4f9c12 fix(mqtt): handle edge case in QoS level negotiation (florianhorner)</span></div>
-            <div>&nbsp;</div>
-            <div><span class="t-prompt">$ </span><span class="t-cmd">rustc --version</span></div>
-            <div><span class="t-success">rustc 1.87.0</span> <span class="t-comment"># for a light switch. yes.</span></div>
+            <div><span class="t-error">847</span> <span class="t-comment"># angefangen bei 12</span></div>
           </div>
         </div>
 
-        <p>Der entscheidende Schritt: ein Gerät im Upstream-Projekt verhielt sich falsch. Jemand hatte bereits einen Patch vorgeschlagen — nie gemergt. Der Betroffene las den Thread. Dann den Code. Dann schrieb er Rust.</p>
+        <p>Home Assistant hielt sein Versprechen. Alles integriert. Aber &bdquo;alles integriert&ldquo; bedeutet: &bdquo;Du verstehst jetzt, wie alles funktioniert.&ldquo; Und wer versteht, wie alles funktioniert, versteht auch, wie alles kaputtgehen kann.</p>
+        <p>Nehmen wir allein Tado als Beispiel: vier verschiedene Integrationspfade, jeder mit unterschiedlichen Kompromissen bei Kompatibilit&auml;t, Funktionsumfang und Langzeitunterst&uuml;tzung. Multipliziert man diese Entscheidung &uuml;ber alle Ger&auml;tekategorien&thinsp;&mdash;&thinsp;IKEA, Govee, Saugroboter, Steckdosen, FP2-Sensoren&thinsp;&mdash;&thinsp;wird die Integrationslandschaft tats&auml;chlich un&uuml;bersichtlich.</p>
 
-        <p>»Ich hatte Rust vorher noch nie geschrieben. Aber der Fix war nach drei Tagen offensichtlich. Also habe ich ihn eingereicht.« Der PR wurde gemergt. Das Repository hat mehrere tausend Sterne. Der Name steht jetzt im Changelog.</p>
+        <div class="callout warn">
+          <div class="callout-icon">&#9888;&#65039;</div>
+          <div class="callout-body"><strong>Was einem niemand &uuml;ber Home Assistant erz&auml;hlt:</strong> Die Plattform ist au&szlig;ergew&ouml;hnlich. Aber die Migration von N bestehenden &Ouml;kosystemen ist eine N-dimensionale Entscheidungsmatrix, in der jede Wahl jede andere Wahl beeinflusst. Das ist keine Beschwerde. Das ist ein Feldbericht.</div>
+        </div>
+      </div>
+    </section>
 
-        <div class="callout success">
-          <div class="callout-icon">✅</div>
-          <div class="callout-body"><strong>Aktueller Stand:</strong> Die Lichter funktionieren. Multizone-Präsenzerkennung läuft. Tado integriert. Alle Steckdosen aktiv. Der FP2 weiß, wo im Zimmer jemand ist. <em>Das war immer das Ziel.</em> Der Weg dorthin war optional.</div>
+    <section class="story-section">
+      <div class="act-tag"><span class="act-number iv">IV</span> Der Umzug</div>
+      <h2 class="story-h2">Smart Homes sind nicht portabel (und andere L&uuml;gen)</h2>
+      <div class="story-body">
+        <p>Dann zog er um.</p>
+        <p>Das Smart-Home-Setup aus der alten Wohnung sollte nat&uuml;rlich problemlos &uuml;bertragbar sein. Man hat ja immer noch eine K&uuml;che. Immer noch ein Badezimmer. Die Automationen sollten einfach... funktionieren. Richtig?</p>
+        <p>Er musste von vorn anfangen. Trotz aller Erfahrung. Trotz der Kenntnis s&auml;mtlicher Fallstricke.</p>
+        <p>Und diesmal skalierte er. Mehr Zigbee-Sensoren&thinsp;&mdash;&thinsp;Fensterkontakte, T&uuml;rsensoren, Temperatursensoren. Pl&ouml;tzlich: ein Skalierbarkeitsproblem auf dem 2,4-GHz-WLAN-Band. Zu viele Ger&auml;te, die um Sendezeit konkurrierten.</p>
+
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="tb-dot r"></div><div class="tb-dot y"></div><div class="tb-dot g"></div>
+            <span class="terminal-label">infrastructure &mdash; eskalation.log</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee devices --count</span></div>
+            <div><span class="t-warn">47</span> <span class="t-comment"># vor dem Umzug waren es 12</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-prompt">$ </span><span class="t-cmd">wifi band --congestion 2.4ghz</span></div>
+            <div><span class="t-error">CRITICAL</span> <span class="t-comment"># zu viele Ger&auml;te, zu wenig Spektrum</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-prompt">$ </span><span class="t-cmd">apt install wifi7-router</span> <span class="t-comment"># 180&thinsp;&euro; f&uuml;r einen Lichtschalter</span></div>
+            <div><span class="t-success">&#10003; mesh network deployed</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee coordinator --status</span></div>
+            <div><span class="t-error">USB dongle: INSUFFICIENT</span> <span class="t-comment"># schafft keine 47 Ger&auml;te</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-prompt">$ </span><span class="t-cmd">zigbee coordinator --upgrade</span></div>
+            <div><span class="t-info">&rarr; dedizierter Zigbee-Router beschafft</span></div>
+            <div><span class="t-info">&rarr; Erscheinungsbild: au&szlig;erirdisches Mutterschiff</span></div>
+            <div><span class="t-error">&rarr; &auml;sthetische Kompatibilit&auml;t: 0%</span></div>
+          </div>
         </div>
 
-        <p>Auf die Frage, ob er es wieder so machen würde, sah er auf den Bildschirm, wo ein Compiler-Fehler leuchtete. Dann auf die Lampe, die ruhig brannte. »<strong>Fragen Sie den Maintainer.</strong>«</p>
+        <p>Der dedizierte Zigbee-Router&thinsp;&mdash;&thinsp;f&uuml;r den zuverl&auml;ssigen Betrieb von 47+ Ger&auml;ten unabdingbar&thinsp;&mdash;&thinsp;sieht aus wie ein Fundobjekt von einer au&szlig;erirdischen Absturzstelle. Er ist, objektiv betrachtet, das h&auml;sslichste Technologieprodukt in der Wohnung. Die meisten Menschen w&uuml;rden ihn hinter einem Vorhang verstecken.</p>
+        <p>Der Betroffene kaufte eine goldfarbene Epoxidharz-Handskulptur, positionierte sie neben der Kaffeemaschine und legte den Zigbee-Router in ihre Handfl&auml;che wie eine Opfergabe an die G&ouml;tter der Konnektivit&auml;t.</p>
+
+        <div class="pullquote">
+          <div class="pullquote-text">&bdquo;Er hat sehr, sehr, sehr guten Empfang.&ldquo;</div>
+          <div class="pullquote-attr">&mdash; Betroffener, zur Antennenplatzierung</div>
+        </div>
+
+        <p>Nebeneffekt: G&auml;ste fragen jetzt nach der Kunstinstallation. Niemand fragt nach dem Zigbee-Mesh-Netzwerk. Das gilt als Erfolg.</p>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <div class="act-tag"><span class="act-number iv">V</span> Die Nachwirkungen</div>
+      <h2 class="story-h2">Der Mann, der nur das Licht anmachen wollte, hat jetzt ein GitHub-Profil</h2>
+      <div class="story-body">
+        <p>Dann machte ein Ger&auml;t in einem Upstream-Projekt Probleme. Chinesische Preset-Namen brachten die MQTT-Bridge zum Absturz&thinsp;&mdash;&thinsp;ein Unicode-Handling-Bug, tief vergraben in Rust-Code. Jemand hatte das Issue vor Monaten gemeldet. Niemand hatte es behoben. Der Betroffene las den Thread. Dann den Code. Dann &ouml;ffnete er Claude Code.</p>
+        <p>&bdquo;Ich hatte noch nie Rust geschrieben. Aber Claude Code las die Codebasis, und der Fix war innerhalb einer Stunde offensichtlich.&ldquo; Der PR wurde gemergt. Das Repository hat mehrere tausend Stars. Sein Name steht im Changelog.</p>
+
+        <div class="callout info">
+          <div class="callout-icon">&#127753;</div>
+          <div class="callout-body"><strong>Die Eskalation setzte sich fort.</strong> Nach dem Rust-Fix fand er ein verwaistes Home-Assistant-Add-on&thinsp;&mdash;&thinsp;jemand hatte gefragt: &bdquo;Ist dieses Projekt aufgegeben?&ldquo; Er aktualisierte die Kernabh&auml;ngigkeit, verdrahtete den MQTT-Export, h&auml;rtete die Sicherheit und ver&ouml;ffentlichte einen Fork. In Bash. Einer Sprache, die er ebenfalls nicht schreibt. Dann reichte er PRs beim Originalprojekt ein. <em>F&uuml;r einen Lichtschalter.</em></div>
+        </div>
+
+        <p>Der Betroffene&thinsp;&mdash;&thinsp;von Beruf Account Executive, kein Ingenieur&thinsp;&mdash;&thinsp;hat jetzt Pull Requests in <strong>drei Programmiersprachen, die er beruflich nicht schreibt</strong>: Rust (Unicode-Crash-Fix, gemergt), Bash/Docker/Nginx (Add-on-Modernisierung + MQTT-Export) und TypeScript (Lovelace-Card). Alles in Projekten, von denen er tats&auml;chlich abh&auml;ngt. Alles mit Claude Code.</p>
+        <p>Das Muster, betont er, ist nicht &bdquo;Ich habe Programmieren gelernt.&ldquo; Das Muster ist: <strong>&bdquo;Die H&uuml;rde, zu Open Source beizutragen, ist weg.&ldquo;</strong></p>
+
+        <div class="pullquote">
+          <div class="pullquote-text">&bdquo;Ich schreibe kein Rust. Ich schreibe kein Bash. Ich schreibe kein TypeScript. Aber ich benutze Software, die in allen dreien geschrieben ist, und als sie kaputt war, habe ich sie repariert. Das ist die ganze Geschichte.&ldquo;</div>
+          <div class="pullquote-attr">&mdash; Betroffener, mittlerweile hellwach um 04:12</div>
+        </div>
+
+        <div class="callout success">
+          <div class="callout-icon">&#10004;&#65039;</div>
+          <div class="callout-body"><strong>Aktueller Status:</strong> Die Lichter funktionieren. Multizonale Pr&auml;senzerkennung l&auml;uft. Tado integriert. Alle Steckdosen aktiv. 47 Zigbee-Ger&auml;te im Mesh-Netzwerk. Der FP2 wei&szlig;, wo im Raum sich jemand befindet. Der Zigbee-Router liegt in einer goldenen Hand neben der Kaffeemaschine. <em>Das war immer das Ziel. Der Weg dorthin war optional.</em></div>
+        </div>
+
+        <p>Seine Eltern verstehen es immer noch nicht. Die Maintainer schon.</p>
       </div>
     </section>
 
   </main>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
 
-    <!-- Sanity Meter -->
     <div class="widget">
       <div class="widget-header">
         <span class="widget-title">Vernunft-Index</span>
-        <span class="widget-badge">% remaining</span>
+        <span class="widget-badge">% verbleibend</span>
       </div>
       <div class="widget-body">
         <div class="sanity-row">
-          <div class="sanity-label-row">
-            <span class="sanity-label-text">Ikea + Alexa-Ära</span>
-            <span class="sanity-val">87%</span>
-          </div>
+          <div class="sanity-label-row"><span class="sanity-label-text">IKEA + Alexa-&Auml;ra</span><span class="sanity-val">87%</span></div>
           <div class="sanity-track"><div class="sanity-fill fill-ok" style="--w:87%; width:87%"></div></div>
         </div>
         <div class="sanity-row">
-          <div class="sanity-label-row">
-            <span class="sanity-label-text">»Apple Home löst das«</span>
-            <span class="sanity-val">71%</span>
-          </div>
+          <div class="sanity-label-row"><span class="sanity-label-text">&bdquo;Apple Home wird das l&ouml;sen&ldquo;</span><span class="sanity-val">71%</span></div>
           <div class="sanity-track"><div class="sanity-fill fill-ok" style="--w:71%; width:71%"></div></div>
         </div>
         <div class="sanity-row">
-          <div class="sanity-label-row">
-            <span class="sanity-label-text">Rückkehr zu Alexa</span>
-            <span class="sanity-val">68%</span>
-          </div>
-          <div class="sanity-track"><div class="sanity-fill fill-ok" style="--w:68%; width:68%"></div></div>
+          <div class="sanity-label-row"><span class="sanity-label-text">Aqara Bridge gekauft</span><span class="sanity-val">62%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-ok" style="--w:62%; width:62%"></div></div>
         </div>
         <div class="sanity-row">
-          <div class="sanity-label-row">
-            <span class="sanity-label-text">Home Assistant installiert</span>
-            <span class="sanity-val">44%</span>
-          </div>
-          <div class="sanity-track"><div class="sanity-fill fill-warn" style="--w:44%; width:44%"></div></div>
+          <div class="sanity-label-row"><span class="sanity-label-text">&bdquo;Flash es einfach auf Zigbee um&ldquo;</span><span class="sanity-val">53%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-warn" style="--w:53%; width:53%"></div></div>
         </div>
         <div class="sanity-row">
-          <div class="sanity-label-row">
-            <span class="sanity-label-text">Erster YAML-Rabbit-Hole</span>
-            <span class="sanity-val">31%</span>
-          </div>
-          <div class="sanity-track"><div class="sanity-fill fill-warn" style="--w:31%; width:31%"></div></div>
+          <div class="sanity-label-row"><span class="sanity-label-text">R&uuml;ckkehr zu Alexa</span><span class="sanity-val">49%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-warn" style="--w:49%; width:49%"></div></div>
         </div>
         <div class="sanity-row">
-          <div class="sanity-label-row">
-            <span class="sanity-label-text">Erster MQTT-Broker</span>
-            <span class="sanity-val">18%</span>
-          </div>
-          <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:18%; width:18%"></div></div>
+          <div class="sanity-label-row"><span class="sanity-label-text">Home Assistant Green gekauft</span><span class="sanity-val">38%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-warn" style="--w:38%; width:38%"></div></div>
         </div>
         <div class="sanity-row">
-          <div class="sanity-label-row">
-            <span class="sanity-label-text">rustc installiert</span>
-            <span class="sanity-val">—</span>
-          </div>
+          <div class="sanity-label-row"><span class="sanity-label-text">Erster YAML-Kaninchenbau</span><span class="sanity-val">28%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-warn" style="--w:28%; width:28%"></div></div>
+        </div>
+        <div class="sanity-row">
+          <div class="sanity-label-row"><span class="sanity-label-text">Wohnung gewechselt</span><span class="sanity-val">22%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:22%; width:22%"></div></div>
+        </div>
+        <div class="sanity-row">
+          <div class="sanity-label-row"><span class="sanity-label-text">47 Zigbee-Ger&auml;te auf 2,4&thinsp;GHz</span><span class="sanity-val">14%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:14%; width:14%"></div></div>
+        </div>
+        <div class="sanity-row">
+          <div class="sanity-label-row"><span class="sanity-label-text">Goldene Handskulptur</span><span class="sanity-val">9%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:9%; width:9%"></div></div>
+        </div>
+        <div class="sanity-row">
+          <div class="sanity-label-row"><span class="sanity-label-text">rustc installiert</span><span class="sanity-val">5%</span></div>
+          <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:5%; width:5%"></div></div>
+        </div>
+        <div class="sanity-row">
+          <div class="sanity-label-row"><span class="sanity-label-text">Fork ver&ouml;ffentlicht</span><span class="sanity-val">&mdash;</span></div>
           <div class="sanity-track"><div class="sanity-fill fill-crit" style="--w:3%; width:3%"></div></div>
         </div>
       </div>
     </div>
 
-    <!-- Stats -->
     <div class="widget">
       <div class="widget-header">
         <span class="widget-title">Kennzahlen</span>
@@ -850,112 +590,85 @@ body {
       </div>
       <div class="widget-body">
         <div class="stats-grid">
-          <div class="stat-block">
-            <div class="stat-val indigo">4</div>
-            <div class="stat-desc">Ökosysteme in Phase I</div>
-          </div>
-          <div class="stat-block">
-            <div class="stat-val amber">1</div>
-            <div class="stat-desc">Sensor, der alles auslöste</div>
-          </div>
-          <div class="stat-block">
-            <div class="stat-val red">847</div>
-            <div class="stat-desc">Zeilen automation.yaml</div>
-          </div>
-          <div class="stat-block">
-            <div class="stat-val green">1</div>
-            <div class="stat-desc">Gemergter Upstream-PR</div>
-          </div>
+          <div class="stat-block"><div class="stat-val indigo">5+</div><div class="stat-desc">&Ouml;kosysteme in Phase I</div></div>
+          <div class="stat-block"><div class="stat-val amber">1</div><div class="stat-desc">Sensor, der alles ausl&ouml;ste</div></div>
+          <div class="stat-block"><div class="stat-val red">847</div><div class="stat-desc">Zeilen in automation.yaml</div></div>
+          <div class="stat-block"><div class="stat-val green">4</div><div class="stat-desc">PRs upstream eingereicht</div></div>
         </div>
       </div>
     </div>
 
-    <!-- Leserpost -->
     <div class="widget">
       <div class="widget-header">
         <span class="widget-title">Leserpost</span>
-        <span class="widget-badge">3 Eingänge</span>
+        <span class="widget-badge">4 eingegangen</span>
       </div>
       <div class="widget-body" style="display:flex;flex-direction:column;gap:12px">
         <div style="padding:10px 12px; background:var(--surface-2); border-radius:8px;">
-          <div style="font-size:12px; color:var(--text-muted); line-height:1.5; font-style:italic; margin-bottom:5px">»Ich verstehe nicht, warum man nicht einfach den Lichtschalter benutzt.«</div>
-          <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-faint)">— Eltern des Betroffenen</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5; font-style:italic; margin-bottom:5px">&bdquo;Ich verstehe nicht, warum man nicht einfach den Lichtschalter benutzt.&ldquo;</div>
+          <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-faint)">&mdash; Eltern des Betroffenen</div>
         </div>
         <div style="padding:10px 12px; background:var(--surface-2); border-radius:8px;">
-          <div style="font-size:12px; color:var(--text-muted); line-height:1.5; font-style:italic; margin-bottom:5px">»PRs welcome. Und: danke.«</div>
-          <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-faint)">— Upstream Maintainer · via GitHub</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5; font-style:italic; margin-bottom:5px">&bdquo;PRs welcome. Und: danke.&ldquo;</div>
+          <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-faint)">&mdash; Upstream-Maintainer &middot; via GitHub</div>
         </div>
         <div style="padding:10px 12px; background:var(--surface-2); border-radius:8px;">
-          <div style="font-size:12px; color:var(--text-muted); line-height:1.5; font-style:italic; margin-bottom:5px">»Alexa, schalte das Licht ein.«<br>»Tut mir leid, ich habe das Gerät nicht gefunden.«</div>
-          <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-faint)">— Letzte bekannte Alexa-Interaktion</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5; font-style:italic; margin-bottom:5px">&bdquo;Einer von uns. Einer von uns.&ldquo;</div>
+          <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-faint)">&mdash; r/homeassistant</div>
+        </div>
+        <div style="padding:10px 12px; background:var(--surface-2); border-radius:8px;">
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5; font-style:italic; margin-bottom:5px">&bdquo;Alexa, schalte das Licht ein.&ldquo;<br>&bdquo;Tut mir leid, ich habe das Ger&auml;t nicht gefunden.&ldquo;</div>
+          <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-faint)">&mdash; Letzte bekannte Alexa-Interaktion</div>
         </div>
       </div>
     </div>
 
-    <!-- Glossar -->
     <div class="widget">
       <div class="widget-header">
         <span class="widget-title">Glossar der Eskalation</span>
       </div>
       <div class="widget-body" style="padding:0 16px">
-        <div class="glossar-item">
-          <span class="glossar-key">TRÅDFRI</span>
-          <span class="glossar-val">Ikea-Ökosystem. Solide. Bridge erforderlich. Alexa-kompatibel. Ausgangsposition.</span>
-        </div>
-        <div class="glossar-item">
-          <span class="glossar-key">TADO</span>
-          <span class="glossar-val">Thermostat-Ökosystem. Hervorragend für Heizung. Spricht nicht mit Ikea. Normal.</span>
-        </div>
-        <div class="glossar-item">
-          <span class="glossar-key">FP2</span>
-          <span class="glossar-val">Aqara-Sensor. Multizone-Präsenz. HomeKit-native. Der Auslöser.</span>
-        </div>
-        <div class="glossar-item">
-          <span class="glossar-key">HA</span>
-          <span class="glossar-val">Home Assistant. »Verbindet alles.« Wahre Aussage. Vollständige Konsequenzen: oben.</span>
-        </div>
-        <div class="glossar-item">
-          <span class="glossar-key">MQTT</span>
-          <span class="glossar-val">Nachrichtenprotokoll. Zunächst als »einfaches Tool« beschrieben. Führt zu Rust.</span>
-        </div>
-        <div class="glossar-item">
-          <span class="glossar-key">RUST</span>
-          <span class="glossar-val">Programmiersprache. Memory-safe. Benötigt, um einen Lichtschalter zu verbessern.</span>
-        </div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">TRADFRI</span><span class="glossar-val">IKEA-&Ouml;kosystem. Solide. Eigene Bridge. Spricht nicht mit Govee. Die Ausgangslage.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">GOVEE</span><span class="glossar-val">RGB-Lampen-&Ouml;kosystem. Sch&ouml;ne Farben. Spricht mit niemandem. App 3 von 8.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">TADO</span><span class="glossar-val">Thermostat-&Ouml;kosystem. Hervorragend zum Heizen. Vier Integrationspfade. Alle verschieden.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">FP2</span><span class="glossar-val">Aqara-Sensor. Multizonale Pr&auml;senz bei 10&thinsp;cm Aufl&ouml;sung. Erkennt wie viele und wo. Der Ausl&ouml;ser.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">ZIGBEE</span><span class="glossar-val">Mesh-Protokoll. &bdquo;Flash es einfach um.&ldquo; Einstieg zu 47 Ger&auml;ten und einer goldenen Handskulptur.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">HA GREEN</span><span class="glossar-val">Home Assistant Green. Schl&uuml;sselfertiger Server. &bdquo;Kein Basteln n&ouml;tig.&ldquo; (Siehe: Akt III.)</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">MQTT</span><span class="glossar-val">Messaging-Protokoll. Zun&auml;chst als &bdquo;einfaches Tool&ldquo; beschrieben. F&uuml;hrt zu Rust.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">RUST</span><span class="glossar-val">Programmiersprache. Memory-safe. Ben&ouml;tigt, um einen Lichtschalter zu verbessern.</span></div>
+        <div class="glossar-item" style="grid-template-columns:70px 1fr"><span class="glossar-key">CLAUDE</span><span class="glossar-val">KI-Coding-Assistent. Liest Codebasen in Sprachen, die man nicht spricht. Erm&ouml;glicher von all dem.</span></div>
       </div>
     </div>
 
   </aside>
 </div>
 
-<!-- CLASSIFIEDS -->
 <hr class="divider">
 <div class="classifieds">
   <div class="classifieds-header">
     <span class="classifieds-title">Kleinanzeigen</span>
-    <span class="classifieds-sub">Rubrik: Smart Home · Selbstverschuldetes</span>
+    <span class="classifieds-sub">Kategorie: Smart Home &middot; Selbstverschuldetes</span>
   </div>
   <div class="classifieds-grid">
     <div class="classified-card">
       <div class="classified-cat sell">Zu verschenken</div>
-      <p class="classified-text"><strong>3× Apple HomePod mini</strong>, kaum benutzt. Inkompatibel mit persönlicher Lebensphilosophie. Selbstabholung München.<br><em>Bitte nur Anfragen per MQTT.</em></p>
+      <p class="classified-text"><strong>3&times; Apple HomePod mini</strong>, kaum benutzt. Unvereinbar mit pers&ouml;nlicher Lebensphilosophie. Abholung in M&uuml;nchen.<br><em>Anfragen ausschlie&szlig;lich per MQTT.</em></p>
     </div>
     <div class="classified-card">
       <div class="classified-cat wanted">Suche</div>
-      <p class="classified-text">Jemanden, der erklärt, warum <strong>automation.yaml:847</strong> um 03:47 Uhr ausgeführt wird, obwohl ich sie nicht geschrieben habe. Entlohnung: ein weiterer Patch.</p>
+      <p class="classified-text">Jemanden, der erkl&auml;ren kann, warum <strong>automation.yaml:847</strong> um 03:47 Uhr ausgef&uuml;hrt wird, obwohl ich das nicht geschrieben habe. Verg&uuml;tung: ein weiterer Upstream-Patch.</p>
     </div>
     <div class="classified-card">
       <div class="classified-cat warning">Warnung</div>
-      <p class="classified-text"><strong>Aqara FP2</strong> zum Kauf angeboten. Führt statistisch in 73% der Fälle zu Home Assistant. In 12% der Fälle zu Rust. Käufer trägt Eigenverantwortung.</p>
+      <p class="classified-text"><strong>Aqara FP2</strong> zum Verkauf angeboten. F&uuml;hrt statistisch in 73&thinsp;% der F&auml;lle zu Home Assistant. In 23&thinsp;% zu einem Zigbee-Router in einer goldenen Hand. In 12&thinsp;% zu Rust. K&auml;ufer &uuml;bernimmt jede Verantwortung.</p>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <hr class="divider">
 <footer class="site-footer">
-  <div class="footer-left"><strong>The Smart Home Gazette</strong> · München, 2026 · Alle Lichter brennen.</div>
-  <div class="footer-right">uptime: 847d · last_commit: 3min ago · status: fine</div>
+  <div class="footer-left"><strong>The Smart Home Gazette</strong> &middot; M&uuml;nchen, 2026 &middot; Alle Lichter brennen.</div>
+  <div class="footer-right">uptime: 847d &middot; zigbee_geraete: 47 &middot; goldene_haende: 1 &middot; status: fine</div>
 </footer>
 
 <script>
@@ -967,7 +680,7 @@ body {
   if(t) t.addEventListener('click', () => {
     d = d === 'dark' ? 'light' : 'dark';
     r.setAttribute('data-theme', d);
-    t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
+    t.setAttribute('aria-label', 'Wechseln zu ' + (d === 'dark' ? 'hellem' : 'dunklem') + ' Modus');
     t.innerHTML = d === 'dark'
       ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
       : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
