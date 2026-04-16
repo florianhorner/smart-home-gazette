@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1280px;
+        height: 640px;
+        background: #f5f1e8;
+        font-family: 'Inter', -apple-system, system-ui, sans-serif;
+        color: #1a1815;
+        overflow: hidden;
+      }
+      .stage {
+        width: 1280px;
+        height: 640px;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        position: relative;
+        background:
+          radial-gradient(900px 500px at 15% 20%, rgba(37, 99, 235, 0.04), transparent 60%),
+          linear-gradient(180deg, #f7f3ea 0%, #efe9dc 100%);
+      }
+      .grain {
+        position: absolute; inset: 0;
+        background-image:
+          radial-gradient(rgba(26, 24, 21, 0.035) 1px, transparent 1px);
+        background-size: 3px 3px;
+        pointer-events: none;
+      }
+
+      .left {
+        position: relative;
+        padding: 48px 44px 40px 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid rgba(26, 24, 21, 0.15);
+      }
+
+      .masthead-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #5a5348;
+        border-bottom: 1px solid rgba(26, 24, 21, 0.5);
+        padding-bottom: 8px;
+      }
+      .masthead-top .vol { color: #2563eb; font-weight: 600; }
+
+      .title-block { padding-top: 14px; }
+      .gothic-title {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-weight: 900;
+        font-style: italic;
+        font-size: 88px;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        color: #1a1815;
+      }
+      .gothic-title .the {
+        display: block;
+        font-size: 32px;
+        font-style: italic;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        color: #3a342c;
+        margin-bottom: -2px;
+      }
+      .gothic-title .gazette { color: #1a1815; }
+
+      .rule-double {
+        margin-top: 14px;
+        border-top: 3px double #1a1815;
+        padding-top: 12px;
+      }
+
+      .dateline {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #3a342c;
+        flex-wrap: wrap;
+      }
+      .dateline .sep { color: #a8a090; }
+      .dateline .price { color: #2563eb; font-weight: 600; }
+
+      .headline-block { margin-top: 18px; }
+      .kicker {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #2563eb;
+        margin-bottom: 8px;
+      }
+      .headline {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 1.04;
+        letter-spacing: -0.015em;
+        color: #1a1815;
+        max-width: 620px;
+      }
+      .headline em { font-style: italic; color: #2563eb; font-weight: 700; }
+
+      .deck {
+        margin-top: 14px;
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #3a342c;
+        max-width: 560px;
+      }
+
+      .byline-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid rgba(26, 24, 21, 0.25);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #5a5348;
+      }
+      .byline-row .tag {
+        padding: 4px 9px;
+        border: 1px solid rgba(26, 24, 21, 0.4);
+        border-radius: 2px;
+      }
+      .byline-row .tag.accent {
+        border-color: #2563eb;
+        color: #2563eb;
+        background: rgba(37, 99, 235, 0.06);
+      }
+      .byline-row .by { color: #1a1815; font-weight: 600; }
+
+      .right {
+        position: relative;
+        padding: 48px 48px 40px 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .col-head {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #5a5348;
+        border-bottom: 1px solid rgba(26, 24, 21, 0.4);
+        padding-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .col-head .label { color: #1a1815; font-weight: 600; }
+      .col-head .page { color: #2563eb; }
+
+      .col-headline {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        color: #1a1815;
+        padding-bottom: 4px;
+      }
+      .col-headline em { font-style: italic; }
+
+      .chain {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        background: #fbfaf5;
+        border: 1px solid rgba(26, 24, 21, 0.18);
+        border-radius: 4px;
+      }
+      .step .num {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: #5a5348;
+        width: 20px;
+        flex-shrink: 0;
+      }
+      .step .what {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a1815;
+        line-height: 1.2;
+      }
+      .step .lang {
+        margin-left: auto;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #5a5348;
+        padding: 2px 6px;
+        border: 1px solid rgba(26, 24, 21, 0.25);
+        border-radius: 2px;
+      }
+      .step.accent {
+        background: rgba(37, 99, 235, 0.06);
+        border-color: #2563eb;
+      }
+      .step.accent .num, .step.accent .lang { color: #2563eb; border-color: #2563eb; }
+
+      .arrow {
+        align-self: center;
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 11px;
+        color: #8a8170;
+        line-height: 0.5;
+      }
+
+      .stat-row {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid rgba(26, 24, 21, 0.25);
+        padding-top: 12px;
+      }
+      .stat {
+        padding: 0 8px;
+        border-right: 1px solid rgba(26, 24, 21, 0.12);
+        text-align: center;
+      }
+      .stat:last-child { border-right: none; }
+      .stat .val {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-weight: 900;
+        font-size: 26px;
+        line-height: 1;
+        color: #1a1815;
+        margin-bottom: 4px;
+      }
+      .stat .val.blue { color: #2563eb; }
+      .stat .desc {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #5a5348;
+        line-height: 1.3;
+      }
+
+      .corner-stamp {
+        position: absolute;
+        top: 24px;
+        right: 32px;
+        transform: rotate(8deg);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #2563eb;
+        border: 2px solid #2563eb;
+        padding: 4px 8px;
+        border-radius: 2px;
+        background: rgba(37, 99, 235, 0.04);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <div class="grain"></div>
+
+      <div class="left">
+        <div class="masthead-top">
+          <span>Est. 2026 &middot; Munich Bureau</span>
+          <span class="vol">Vol. VII &middot; Special Edition</span>
+          <span>Paper of Record for People Who Shouldn&rsquo;t Have Started</span>
+        </div>
+
+        <div class="title-block">
+          <h1 class="gothic-title">
+            <span class="the">The Smart Home</span>
+            <span class="gazette">Gazette</span>
+          </h1>
+        </div>
+
+        <div class="rule-double">
+          <div class="dateline">
+            <span>Friday, 10 April 2026</span>
+            <span class="sep">&bull;</span>
+            <span>Late Edition</span>
+            <span class="sep">&bull;</span>
+            <span class="price">Free &mdash; CC BY 4.0</span>
+            <span class="sep">&bull;</span>
+            <span>847 Lines of YAML</span>
+          </div>
+        </div>
+
+        <div class="headline-block">
+          <div class="kicker">Investigative &middot; Self-Inflicted</div>
+          <h2 class="headline">
+            He just wanted to <em>turn on a light.</em>
+          </h2>
+          <p class="deck">
+            How IKEA bulbs, Tado thermostats, a robot vacuum, Govee lamps, and a single
+            presence sensor ended with merged pull requests in Rust, Bash, and TypeScript.
+            A reconstruction.
+          </p>
+        </div>
+
+        <div class="byline-row">
+          <span class="by">By Florian Horner</span>
+          <span class="tag">AWS Account Exec</span>
+          <span class="tag accent">Not an Engineer</span>
+          <span>4 PRs &middot; 3 Languages</span>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="corner-stamp">Filed 03:47</div>
+
+        <div class="col-head">
+          <span class="label">Column One &middot; The Escalation</span>
+          <span class="page">Pg. 1</span>
+        </div>
+
+        <h3 class="col-headline">
+          From wall switch to <em>merged commit,</em><br/>in five reasonable-seeming steps.
+        </h3>
+
+        <div class="chain">
+          <div class="step">
+            <span class="num">01</span>
+            <span class="what">Buy a light bulb</span>
+            <span class="lang">IKEA</span>
+          </div>
+          <div class="arrow">&#9660;</div>
+          <div class="step">
+            <span class="num">02</span>
+            <span class="what">Install Home Assistant</span>
+            <span class="lang">YAML</span>
+          </div>
+          <div class="arrow">&#9660;</div>
+          <div class="step">
+            <span class="num">03</span>
+            <span class="what">Discover MQTT</span>
+            <span class="lang">Broker</span>
+          </div>
+          <div class="arrow">&#9660;</div>
+          <div class="step accent">
+            <span class="num">04</span>
+            <span class="what">Patch upstream unicode bug</span>
+            <span class="lang">Rust</span>
+          </div>
+          <div class="arrow">&#9660;</div>
+          <div class="step">
+            <span class="num">05</span>
+            <span class="what">PR merged. Changelog signed.</span>
+            <span class="lang">Shipped</span>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat">
+            <div class="val blue">54</div>
+            <div class="desc">Zigbee<br/>devices</div>
+          </div>
+          <div class="stat">
+            <div class="val">10</div>
+            <div class="desc">Bluetooth<br/>proxies</div>
+          </div>
+          <div class="stat">
+            <div class="val">1</div>
+            <div class="desc">Golden<br/>hand sculpture</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
