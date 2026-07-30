@@ -6,6 +6,6 @@ on:
 
 jobs:
   verify:
-    uses: florianhorner/gh-workflows/.github/workflows/verify-claims.yml@v1.1
+    uses: florianhorner/gh-workflows/.github/workflows/verify-claims.yml@f93889a64ff7b501182e5c988b992672ca857ea9 # v1.3
     with:
       owned_repos: "florianhorner/smart-home-gazette"
