@@ -16,6 +16,6 @@ jobs:
     permissions:
       contents: read
       actions: read
-    uses: florianhorner/gh-workflows/.github/workflows/verify-claims.yml@f93889a64ff7b501182e5c988b992672ca857ea9 # v1.3
+    uses: florianhorner/gh-workflows/.github/workflows/verify-claims.yml@6b69633101c7086ed53dbfc12233f26a782a1632 # v1.6
     with:
       owned_repos: "florianhorner/smart-home-gazette"
